@@ -1,4 +1,10 @@
-Metrics/LineLength:
+AllCops:
+    NewCops: enable
+    Exclude:
+        - 'db/schema.rb'
+        - 'vendor/**/*'
+
+Layout/LineLength:
     Max: 150
 
 Style/Documentation:
