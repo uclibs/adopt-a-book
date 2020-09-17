@@ -1,0 +1,112 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pub_year %>
+    <%= form.text_field :pub_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :library %>
+    <%= form.text_field :library %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :condition_treatment %>
+    <%= form.text_field :condition_treatment %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adopt_status %>
+    <%= form.number_field :adopt_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adopt_amount %>
+    <%= form.text_field :adopt_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :release_year %>
+    <%= form.number_field :release_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dedication %>
+    <%= form.text_field :dedication %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recognition %>
+    <%= form.text_field :recognition %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adopter_fname %>
+    <%= form.text_field :adopter_fname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adopter_lname %>
+    <%= form.text_field :adopter_lname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adopter_address %>
+    <%= form.text_field :adopter_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adopter_phone %>
+    <%= form.number_field :adopter_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adopter_email %>
+    <%= form.text_field :adopter_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adopt_time %>
+    <%= form.datetime_select :adopt_time %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
