@@ -24,6 +24,15 @@ require('rails_helper')
 # `rails-controller-testing` gem.
 
 RSpec.describe(ProductsController, type: :controller) do
+  before do
+    admin = FactoryBot.create(:admin)
+    sign_in_admin(admin)
+  end
+
+  def sign_in_admin(admin)
+    sign_in admin
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Product. As you add validations to Product, be sure to
   # adjust the attributes here as well.

@@ -43,6 +43,7 @@ gem('dotenv-rails', require: 'dotenv/rails-now')
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.8'
   gem 'rubocop', '~> 0.81.0', require: false
 end

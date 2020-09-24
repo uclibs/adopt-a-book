@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Books</h1>
-
 <br>
 
 <table>
@@ -24,8 +23,11 @@
     </tr>
     <tr>
       <td><%= link_to 'Read more', product %>
-      <%= link_to 'Edit', edit_product_path(product) %>
-      <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if admin_signed_in? %>
+          <%= link_to 'Edit', edit_product_path(product) %>
+          <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
     </tr>
     <tr>
       <td>
@@ -37,5 +39,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Product', new_product_path %>
+<% if admin_signed_in? %>
+  <%= link_to 'New Product', new_product_path %>
+<% end %>

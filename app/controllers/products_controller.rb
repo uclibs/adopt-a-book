@@ -1,5 +1,6 @@
 # ProductsController controls CRUD operations of the products
 class ProductsController < ApplicationController
+  before_action :authenticate_admin!, except: %i[show index]
   before_action :set_product, only: %i[show edit update destroy]
 
   # GET /products
