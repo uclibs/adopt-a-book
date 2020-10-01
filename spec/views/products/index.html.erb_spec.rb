@@ -63,7 +63,17 @@ RSpec.describe('products/index', type: :view) do
       render
       expect(rendered).to have_no_link('Edit')
       expect(rendered).to have_no_link('Destroy')
-      expect(rendered).to have_no_link('New Product')
+      expect(rendered).to have_no_link('New Product', href: new_product_path)
+    end
+
+    it 'should not display logout link' do
+      render
+      expect(rendered).to have_no_link('Logout')
+    end
+
+    it 'should not display login information' do
+      render
+      expect(rendered).to have_no_text('Logged in as random@example.com')
     end
   end
 
@@ -81,7 +91,17 @@ RSpec.describe('products/index', type: :view) do
       render
       expect(rendered).to have_link('Edit', count: 2)
       expect(rendered).to have_link('Destroy', count: 2)
-      expect(rendered).to have_link('New Product', count: 1)
+      expect(rendered).to have_link('New Product', href: new_product_path, count: 1)
+    end
+
+    it 'should display logout link' do
+      render
+      expect(rendered).to have_link('Logout', href: destroy_admin_session_path)
+    end
+
+    it 'should display login information' do
+      render
+      expect(rendered).to have_text('Logged in as random@example.com')
     end
   end
 end
