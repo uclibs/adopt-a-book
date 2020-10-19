@@ -2,51 +2,7 @@ require('rails_helper')
 
 RSpec.describe('products/index', type: :view) do
   before(:each) do
-    assign(
-      :products,
-      [
-        Product.create!(
-          title: 'Title',
-          author: 'Author',
-          pub_year: 'Pub Year',
-          category: 'Category',
-          image: 'Image',
-          library: 'Library',
-          description: 'Description',
-          condition_treatment: 'Condition Treatment',
-          adopt_status: 2,
-          adopt_amount: '1500.39',
-          release_year: 2020,
-          dedication: 'Dedication',
-          recognition: 'Recognition',
-          adopter_fname: 'Adopter Fname',
-          adopter_lname: 'Adopter Lname',
-          adopter_address: 'Adopter Address',
-          adopter_phone: 1_234_567_890,
-          adopter_email: 'Adopter Email'
-        ),
-        Product.create!(
-          title: 'Title',
-          author: 'Author',
-          pub_year: 'Pub Year',
-          category: 'Category',
-          image: 'Image',
-          library: 'Library',
-          description: 'Description',
-          condition_treatment: 'Condition Treatment',
-          adopt_status: 2,
-          adopt_amount: '1500.39',
-          release_year: 2020,
-          dedication: 'Dedication',
-          recognition: 'Recognition',
-          adopter_fname: 'Adopter Fname',
-          adopter_lname: 'Adopter Lname',
-          adopter_address: 'Adopter Address',
-          adopter_phone: 1_234_567_890,
-          adopter_email: 'Adopter Email'
-        )
-      ]
-    )
+    @products = FactoryBot.create_list(:product, 2)
   end
 
   it 'renders a list of products' do
@@ -59,7 +15,7 @@ RSpec.describe('products/index', type: :view) do
   end
 
   context 'when admin is not logged in' do
-    it 'should not allow admin to see edit, delete and new product links' do
+    it 'should not allow admin/adopters to see edit, delete and new product links' do
       render
       expect(rendered).to have_no_link('Edit')
       expect(rendered).to have_no_link('Destroy')

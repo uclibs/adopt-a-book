@@ -1,0 +1,31 @@
+<% if alert %>
+  <h3><b class="alert"><%= alert %></b></h3>
+<% end %>
+<%= form_with url: cart_path, local: true, method: :post do %>
+  <h1>Adoption cart</h1>
+  <% if @cart.empty? %>
+    <p>The cart is empty.</p>
+    <%= link_to 'Adopt more books', products_path %>
+  <% else %>
+    <% @cart.each do |product| %>
+      <h4><b><%= product.title %></b><div style="float:right"><%= number_to_currency(product.adopt_amount, strip_insignificant_zeros: true) %></div></h4>
+      <div>
+        <%= label_tag 'Dedication' %>
+        <%= text_field_tag product.id.to_s + '_dedication', session[:cart][product.id.to_s]['dedication'] %>
+      </div>
+      <br />
+      <div>
+        <%= label_tag 'Recognition' %>
+        <%= text_field_tag product.id.to_s + '_recognition', session[:cart][product.id.to_s]['recognition'] %>
+      </div>
+      <br />
+      <%= link_to 'Remove', remove_path(product), remote: true, method: :delete %>
+    <br /><br /><hr />
+    <% end %>
+    <div style="float:right">Total price: <%= number_to_currency(@cart.map(&:adopt_amount).sum, strip_insignificant_zeros: true) %></div>
+    <br />
+    <%= link_to 'Clear cart', cart_path, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Adopt more books', products_path %>
+    <%= submit_tag "Checkout"%>
+  <% end %>
+<% end %>

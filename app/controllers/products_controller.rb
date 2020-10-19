@@ -1,8 +1,8 @@
 # ProductsController controls CRUD operations of the products
 class ProductsController < ApplicationController
-  before_action :authenticate_admin!, except: %i[show index]
+  before_action :authenticate_admin!, except: %i[show index add]
   before_action :set_product, only: %i[show edit update destroy]
-
+  # skip_before_action :verify_authenticity_token, only: :action?
   # GET /products
   # GET /products.json
   def index
@@ -58,6 +58,16 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def add
+    if session[:cart]
+      id = params[:id]
+      session[:cart][id] = {} unless session[:cart].key?(id)
+      redirect_back(fallback_location: :product)
+    else
+      redirect_to root_path, alert: 'Session expired!'
     end
   end
 
