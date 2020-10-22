@@ -2,29 +2,7 @@ require('rails_helper')
 
 RSpec.describe('products/edit', type: :view) do
   before(:each) do
-    @product = assign(
-      :product,
-      Product.create!(
-        title: 'MyString',
-        author: 'MyString',
-        pub_year: 'MyString',
-        category: 'MyString',
-        image: 'MyString',
-        library: 'MyString',
-        description: 'MyString',
-        condition_treatment: 'MyString',
-        adopt_status: 1,
-        adopt_amount: '1500.39',
-        release_year: 1,
-        dedication: 'MyString',
-        recognition: 'MyString',
-        adopter_fname: 'MyString',
-        adopter_lname: 'MyString',
-        adopter_address: 'MyString',
-        adopter_phone: 1,
-        adopter_email: 'MyString'
-      )
-    )
+    @product = FactoryBot.create(:product)
   end
 
   it 'renders the edit product form' do

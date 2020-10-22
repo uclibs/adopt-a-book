@@ -26,7 +26,9 @@ require('rails_helper')
 RSpec.describe(ProductsController, type: :controller) do
   before do
     admin = FactoryBot.create(:admin)
+    @product = FactoryBot.create(:product)
     sign_in_admin(admin)
+    session[:cart] = {}
   end
 
   def sign_in_admin(admin)
@@ -70,7 +72,6 @@ RSpec.describe(ProductsController, type: :controller) do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      Product.create!(valid_attributes)
       get :index, params: {}, session: valid_session
       expect(response).to(be_successful)
     end
@@ -78,8 +79,7 @@ RSpec.describe(ProductsController, type: :controller) do
 
   describe 'GET #show' do
     it 'returns a success response' do
-      product = Product.create!(valid_attributes)
-      get :show, params: { id: product.to_param }, session: valid_session
+      get :show, params: { id: @product.to_param }, session: valid_session
       expect(response).to(be_successful)
     end
   end
@@ -93,8 +93,7 @@ RSpec.describe(ProductsController, type: :controller) do
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      product = Product.create!(valid_attributes)
-      get :edit, params: { id: product.to_param }, session: valid_session
+      get :edit, params: { id: @product.to_param }, session: valid_session
       expect(response).to(be_successful)
     end
   end
@@ -147,33 +146,31 @@ RSpec.describe(ProductsController, type: :controller) do
       end
 
       it 'updates the requested product' do
-        product = Product.create!(valid_attributes)
-        put :update, params: { id: product.to_param, product: new_attributes }, session: valid_session
-        product.reload
-        expect(product.title).to(eq('Title New'))
-        expect(product.author).to(eq('Author New'))
-        expect(product.pub_year).to(eq('Pub Year New'))
-        expect(product.category).to(eq('Category New'))
-        expect(product.image).to(have_content('Image New'))
-        expect(product.library).to(have_content('Library New'))
-        expect(product.description).to(have_content('Description New'))
-        expect(product.condition_treatment).to(have_content('Condition Treatment New'))
-        expect(product.adopt_status).to(have_content(1))
-        expect(product.adopt_amount).to(have_content('2500.99'))
-        expect(product.release_year).to(have_content(2020))
-        expect(product.dedication).to(eq('Dedication New'))
-        expect(product.recognition).to(have_content('Recognition New'))
-        expect(product.adopter_fname).to(have_content('Adopter Fname New'))
-        expect(product.adopter_lname).to(have_content('Adopter Lname New'))
-        expect(product.adopter_address).to(have_content('Adopter Address New'))
-        expect(product.adopter_phone).to(have_content(1_023_456_789))
-        expect(product.adopter_email).to(have_content('Adopter Email New'))
+        put :update, params: { id: @product.to_param, product: new_attributes }, session: valid_session
+        @product.reload
+        expect(@product.title).to(eq('Title New'))
+        expect(@product.author).to(eq('Author New'))
+        expect(@product.pub_year).to(eq('Pub Year New'))
+        expect(@product.category).to(eq('Category New'))
+        expect(@product.image).to(have_content('Image New'))
+        expect(@product.library).to(have_content('Library New'))
+        expect(@product.description).to(have_content('Description New'))
+        expect(@product.condition_treatment).to(have_content('Condition Treatment New'))
+        expect(@product.adopt_status).to(have_content(1))
+        expect(@product.adopt_amount).to(have_content('2500.99'))
+        expect(@product.release_year).to(have_content(2020))
+        expect(@product.dedication).to(eq('Dedication New'))
+        expect(@product.recognition).to(have_content('Recognition New'))
+        expect(@product.adopter_fname).to(have_content('Adopter Fname New'))
+        expect(@product.adopter_lname).to(have_content('Adopter Lname New'))
+        expect(@product.adopter_address).to(have_content('Adopter Address New'))
+        expect(@product.adopter_phone).to(have_content(1_023_456_789))
+        expect(@product.adopter_email).to(have_content('Adopter Email New'))
       end
 
       it 'redirects to the product' do
-        product = Product.create!(valid_attributes)
-        put :update, params: { id: product.to_param, product: valid_attributes }, session: valid_session
-        expect(response).to(redirect_to(product))
+        put :update, params: { id: @product.to_param, product: new_attributes }, session: valid_session
+        expect(response).to(redirect_to(@product))
       end
     end
 
@@ -188,16 +185,23 @@ RSpec.describe(ProductsController, type: :controller) do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested product' do
-      product = Product.create!(valid_attributes)
       expect do
-        delete :destroy, params: { id: product.to_param }, session: valid_session
+        delete :destroy, params: { id: @product.to_param }, session: valid_session
       end.to(change(Product, :count).by(-1))
     end
 
     it 'redirects to the products list' do
-      product = Product.create!(valid_attributes)
-      delete :destroy, params: { id: product.to_param }, session: valid_session
+      delete :destroy, params: { id: @product.to_param }, session: valid_session
       expect(response).to(redirect_to(products_url))
+    end
+  end
+
+  describe 'POST #add' do
+    it 'product is added to cart' do
+      expect do
+        post :add, params: { id: @product.to_param }, session: valid_session
+      end.to(change(session[:cart], :count).by(1))
+      expect(response).to(redirect_to(@product))
     end
   end
 end

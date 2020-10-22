@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<% if alert %>
+  <h3><b class="alert"><%= alert %></b></h3>
+<% end %>
+
 <% if admin_signed_in? && current_admin %>
     <p>Logged in as <%= current_admin.email %>
     <%= link_to "Logout", destroy_admin_session_path, :method => :delete, data: { confirm: 'Are you sure?' } %></p>

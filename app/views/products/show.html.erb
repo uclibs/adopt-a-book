@@ -97,5 +97,16 @@
   <%= @product.adopt_time %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<% if session[:cart] && session[:cart].include?(@product.id.to_s) %>
+  <p>
+    <a>Added to cart</a>
+    <%= link_to 'View cart', cart_path %>
+    <%= link_to 'Adopt more books', products_path %>
+  </p>
+<% else %>
+  <p><%= link_to 'Add to cart', @product, remote: true, method: :post %></p>
+<% end %>
+<% if admin_signed_in? %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+<% end %>
 <%= link_to 'Back', products_path %>
