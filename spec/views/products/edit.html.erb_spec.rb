@@ -34,16 +34,6 @@ RSpec.describe('products/edit', type: :view) do
       assert_select 'input[name=?]', 'product[dedication]'
 
       assert_select 'input[name=?]', 'product[recognition]'
-
-      assert_select 'input[name=?]', 'product[adopter_fname]'
-
-      assert_select 'input[name=?]', 'product[adopter_lname]'
-
-      assert_select 'input[name=?]', 'product[adopter_address]'
-
-      assert_select 'input[name=?]', 'product[adopter_phone]'
-
-      assert_select 'input[name=?]', 'product[adopter_email]'
     end
   end
 end

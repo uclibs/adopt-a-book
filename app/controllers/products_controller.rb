@@ -11,7 +11,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   # GET /products/1.json
-  def show; end
+  def show
+    @adopter = Adopter.find(@product.adopter_id) unless @product.adopter_id.nil?
+  end
 
   # GET /products/new
   def new
@@ -80,6 +82,6 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:title, :author, :pub_year, :category, :image, :library, :description, :condition_treatment, :adopt_status, :adopt_amount, :release_year, :dedication, :recognition, :adopter_fname, :adopter_lname, :adopter_address, :adopter_phone, :adopter_email, :adopt_time)
+    params.require(:product).permit(:title, :author, :pub_year, :category, :image, :library, :description, :condition_treatment, :adopt_status, :adopt_amount, :release_year, :dedication, :recognition)
   end
 end

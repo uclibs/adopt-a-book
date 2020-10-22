@@ -15,10 +15,5 @@ FactoryBot.define do
     release_year { 2020 }
     dedication { 'Dedication' }
     recognition { 'Recognition' }
-    adopter_fname { 'Adopter Fname' }
-    adopter_lname { 'Adopter Lname' }
-    adopter_address { 'Adopter Address' }
-    adopter_phone { 1_234_567_890 }
-    adopter_email { 'Adopter Email' }
   end
 end

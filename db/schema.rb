@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_161402) do
+ActiveRecord::Schema.define(version: 2020_10_22_160750) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 2020_09_23_161402) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "adopters", force: :cascade do |t|
+    t.string "fname"
+    t.string "lname"
+    t.string "address"
+    t.integer "phone", limit: 10
+    t.string "email"
+    t.datetime "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -38,14 +49,10 @@ ActiveRecord::Schema.define(version: 2020_09_23_161402) do
     t.integer "release_year", limit: 4
     t.string "dedication", limit: 75
     t.string "recognition"
-    t.string "adopter_fname"
-    t.string "adopter_lname"
-    t.string "adopter_address"
-    t.integer "adopter_phone", limit: 10
-    t.string "adopter_email"
-    t.datetime "adopt_time"
+    t.integer "adopter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["adopter_id"], name: "index_products_on_adopter_id"
   end
 
 end
