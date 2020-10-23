@@ -5,13 +5,31 @@ RSpec.describe('products/index', type: :view) do
     @products = FactoryBot.create_list(:product, 2)
   end
 
-  it 'renders a list of products' do
-    render
-    assert_select 'tr>td', text: 'Title: Title'.to_s, count: 2
-    assert_select 'tr>td', text: 'Author: Author'.to_s, count: 2
-    assert_select 'tr>td', text: 'Category: Category'.to_s, count: 2
-    assert_select 'tr>td', text: 'Library: Library'.to_s, count: 2
-    assert_select 'tr>td', text: 'Adoption amount: ' + number_to_currency('1500.39', strip_insignificant_zeros: true), count: 2
+  context 'for available books with status is available' do
+    before do
+      @products = Product.send('available')
+    end
+    it 'renders a list of products' do
+      render
+      assert_select 'tr>td', text: 'Title: Title'.to_s, count: 2
+      assert_select 'tr>td', text: 'Author: Author'.to_s, count: 2
+      assert_select 'tr>td', text: 'Category: Category'.to_s, count: 2
+      assert_select 'tr>td', text: 'Library: Library'.to_s, count: 2
+      assert_select 'tr>td', text: 'Adoption amount: ' + number_to_currency('1500.39', strip_insignificant_zeros: true), count: 2
+    end
+  end
+
+  context 'for adopted books with status is adopted' do
+    before do
+      @products = Product.send('adopted')
+    end
+    it 'renders a list of products' do
+      render
+      assert_select 'tr>td', text: 'Title: Title'.to_s, count: 0
+      assert_select 'tr>td', text: 'Author: Author'.to_s, count: 0
+      assert_select 'tr>td', text: 'Category: Category'.to_s, count: 0
+      assert_select 'tr>td', text: 'Library: Library'.to_s, count: 0
+    end
   end
 
   context 'when admin is not logged in' do

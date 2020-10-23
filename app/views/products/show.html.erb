@@ -44,7 +44,7 @@
 
 <p>
   <strong>Adopt status:</strong>
-  <%= @product.adopt_status %>
+  <%= @product.adopt_status.capitalize %>
 </p>
 
 <p>
@@ -105,7 +105,7 @@
   <p>
     <a>Added to cart</a>
     <%= link_to 'View cart', cart_path %>
-    <%= link_to 'Adopt more books', products_path %>
+    <%= link_to 'Adopt more books', status_products_path(:status => "available") %>
   </p>
 <% else %>
   <p><%= link_to 'Add to cart', @product, remote: true, method: :post %></p>
@@ -114,4 +114,4 @@
 <% if admin_signed_in? %>
   <%= link_to 'Edit', edit_product_path(@product) %> |
 <% end %>
-<%= link_to 'Back', products_path %>
+<%= link_to 'Back', status_products_path(:status => @product.adopt_status) %>

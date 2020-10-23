@@ -13,7 +13,7 @@ RSpec.describe('cart/index', type: :view) do
     it 'renders attributes in <p>' do
       render
       expect(rendered).to(match(/The cart is empty./))
-      expect(rendered).to have_link('Adopt more books')
+      expect(rendered).to have_link('Adopt books')
     end
   end
 

@@ -6,7 +6,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = if Product.adopt_statuses.key? params['status'] # security check that it's a valid param
+                  Product.send(params['status'])
+                else
+                  Product.available # if not a valid status param, just return available products
+                end
   end
 
   # GET /products/1

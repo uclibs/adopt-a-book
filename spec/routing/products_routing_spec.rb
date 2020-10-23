@@ -3,7 +3,7 @@ require('rails_helper')
 RSpec.describe(ProductsController, type: :routing) do
   describe 'routing' do
     it 'routes to #index' do
-      expect(get: '/products').to(route_to('products#index'))
+      expect(get: '/products/status/0').to(route_to('products#index', 'status' => '0'))
     end
 
     it 'routes to #new' do
