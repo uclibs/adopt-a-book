@@ -48,7 +48,7 @@ RSpec.describe(ProductsController, type: :controller) do
       library: 'Library',
       description: 'Description',
       condition_treatment: 'Condition Treatment',
-      adopt_status: 2,
+      adopt_status: 'pending',
       adopt_amount: '1500.39',
       release_year: 2020,
       dedication: 'Dedication',
@@ -66,9 +66,24 @@ RSpec.describe(ProductsController, type: :controller) do
   let(:valid_session) { {} }
 
   describe 'GET #index' do
-    it 'returns a success response' do
-      get :index, params: {}, session: valid_session
-      expect(response).to(be_successful)
+    context 'when status is available' do
+      it 'returns a success response for available books' do
+        get :index, params: { status: 'available' }, session: valid_session
+        expect(@product.adopt_status).to(eq('available'))
+        expect(response).to(be_successful)
+      end
+    end
+
+    context 'when status is adopted' do
+      before do
+        @product = FactoryBot.create(:adopted_product)
+      end
+
+      it 'returns a success response for adopted books' do
+        get :index, params: { status: 'adopted' }, session: valid_session
+        expect(@product.adopt_status).to(eq('adopted'))
+        expect(response).to(be_successful)
+      end
     end
   end
 
@@ -127,7 +142,7 @@ RSpec.describe(ProductsController, type: :controller) do
           library: 'Library New',
           description: 'Description New',
           condition_treatment: 'Condition Treatment New',
-          adopt_status: 1,
+          adopt_status: 'adopted',
           adopt_amount: '2500.99',
           release_year: 2020,
           dedication: 'Dedication New',
@@ -146,7 +161,7 @@ RSpec.describe(ProductsController, type: :controller) do
         expect(@product.library).to(have_content('Library New'))
         expect(@product.description).to(have_content('Description New'))
         expect(@product.condition_treatment).to(have_content('Condition Treatment New'))
-        expect(@product.adopt_status).to(have_content(1))
+        expect(@product.adopt_status).to(have_content('adopted'))
         expect(@product.adopt_amount).to(have_content('2500.99'))
         expect(@product.release_year).to(have_content(2020))
         expect(@product.dedication).to(eq('Dedication New'))

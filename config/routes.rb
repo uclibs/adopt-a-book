@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   post 'cart', to: 'cart#checkout'
   delete 'cart', to: 'cart#destroy'
   devise_for :admins, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
-  resources :products
+  resources :products, except: [:index] do
+    collection do
+      get 'status/:status', to: 'products#index', as: 'status'
+    end
+  end
   root 'products#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

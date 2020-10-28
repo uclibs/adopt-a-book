@@ -53,7 +53,7 @@
 
   <div class="field">
     <%= form.label :adopt_status %>
-    <%= form.number_field :adopt_status %>
+    <%= form.text_field :adopt_status, :value => product.adopt_status.capitalize  %>
   </div>
 
   <div class="field">

@@ -46,7 +46,7 @@ RSpec.describe('products/show', type: :view) do
       expect(rendered).to(match(/2020/))
       expect(rendered).to(match(/Added to cart/))
       expect(rendered).to have_link('View cart', href: cart_path)
-      expect(rendered).to have_link('Adopt more books', href: products_path)
+      expect(rendered).to have_link('Adopt more books', href: status_products_path(status: 'available'))
       expect(rendered).to have_no_link('Add to cart')
     end
   end
