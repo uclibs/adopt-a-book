@@ -1,6 +1,19 @@
 require('csv')
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'AAB.csv'))
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'Adopters.csv'))
+csv = CSV.parse(csv_text, headers: true, encoding: 'utf-8')
+csv.each do |row|
+  t = Adopter.new
+  t.fname = row['Adopter Fname']
+  t.lname = row['Adopter Lname']
+  t.address = row['Adopter Address']
+  t.phone = row['Adopter Phone']
+  t.email = row['Adopter Email']
+  t.time = row['Adopt time']
+  t.save
+end
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'Products.csv'))
 csv = CSV.parse(csv_text, headers: true, encoding: 'utf-8')
 csv.each do |row|
   t = Product.new
@@ -17,14 +30,10 @@ csv.each do |row|
   t.release_year = row['Year']
   t.dedication = row['Dedication']
   t.recognition = row['Recognition']
-  t.adopter_fname = row['Adopter Fname']
-  t.adopter_lname = row['Adopter Lname']
-  t.adopter_address = row['Adopter Address']
-  t.adopter_phone = row['Adopter Phone']
-  t.adopter_email = row['Adopter Email']
-  t.adopt_time = row['Adopt time']
+  t.adopter_id = row['Adopter ID']
   t.save
 end
 
 # Delete table contents
 # Product.delete_all
+# Adopter.delete_all

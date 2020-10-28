@@ -52,12 +52,7 @@ RSpec.describe(ProductsController, type: :controller) do
       adopt_amount: '1500.39',
       release_year: 2020,
       dedication: 'Dedication',
-      recognition: 'Recognition',
-      adopter_fname: 'Adopter Fname',
-      adopter_lname: 'Adopter Lname',
-      adopter_address: 'Adopter Address',
-      adopter_phone: 1_234_567_890,
-      adopter_email: 'Adopter Email'
+      recognition: 'Recognition'
     }
   end
 
@@ -136,12 +131,7 @@ RSpec.describe(ProductsController, type: :controller) do
           adopt_amount: '2500.99',
           release_year: 2020,
           dedication: 'Dedication New',
-          recognition: 'Recognition New',
-          adopter_fname: 'Adopter Fname New',
-          adopter_lname: 'Adopter Lname New',
-          adopter_address: 'Adopter Address New',
-          adopter_phone: 1_023_456_789,
-          adopter_email: 'Adopter Email New'
+          recognition: 'Recognition New'
         }
       end
 
@@ -161,11 +151,6 @@ RSpec.describe(ProductsController, type: :controller) do
         expect(@product.release_year).to(have_content(2020))
         expect(@product.dedication).to(eq('Dedication New'))
         expect(@product.recognition).to(have_content('Recognition New'))
-        expect(@product.adopter_fname).to(have_content('Adopter Fname New'))
-        expect(@product.adopter_lname).to(have_content('Adopter Lname New'))
-        expect(@product.adopter_address).to(have_content('Adopter Address New'))
-        expect(@product.adopter_phone).to(have_content(1_023_456_789))
-        expect(@product.adopter_email).to(have_content('Adopter Email New'))
       end
 
       it 'redirects to the product' do
