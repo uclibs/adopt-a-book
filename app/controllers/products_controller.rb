@@ -2,6 +2,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_admin!, except: %i[show index add]
   before_action :set_product, only: %i[show edit update destroy]
+  before_action :cart_session_exists?, only: :add
   # skip_before_action :verify_authenticity_token, only: :action?
   # GET /products
   # GET /products.json
@@ -68,13 +69,12 @@ class ProductsController < ApplicationController
   end
 
   def add
-    if session[:cart]
-      id = params[:id]
-      session[:cart][id] = {} unless session[:cart].key?(id)
-      redirect_back(fallback_location: :product)
-    else
-      redirect_to root_path, alert: 'Session expired!'
-    end
+    return unless session[:cart]
+
+    id = params[:id]
+    Product.find(id).update(adopt_status: Product.adopt_statuses[:pending])
+    session[:cart][id] = {} unless session[:cart].key?(id)
+    redirect_back(fallback_location: :product)
   end
 
   private

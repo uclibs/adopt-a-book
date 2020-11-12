@@ -25,7 +25,7 @@ RSpec.describe('products/index', type: :view) do
     end
     it 'renders a list of products' do
       render
-      assert_select 'tr>td', text: 'Title: Title'.to_s, count: 0
+      assert_select 'tr>td', text: 'Title: Title'.to_s, count: 0, href: @product
       assert_select 'tr>td', text: 'Author: Author'.to_s, count: 0
       assert_select 'tr>td', text: 'Category: Category'.to_s, count: 0
       assert_select 'tr>td', text: 'Library: Library'.to_s, count: 0

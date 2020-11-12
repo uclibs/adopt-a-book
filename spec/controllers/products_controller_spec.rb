@@ -201,6 +201,8 @@ RSpec.describe(ProductsController, type: :controller) do
       expect do
         post :add, params: { id: @product.to_param }, session: valid_session
       end.to(change(session[:cart], :count).by(1))
+      @product.reload
+      expect(@product.adopt_status).to eq('pending')
       expect(response).to(redirect_to(@product))
     end
   end

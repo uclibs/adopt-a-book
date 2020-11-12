@@ -1,14 +1,14 @@
 <% if alert %>
   <h3><b class="alert"><%= alert %></b></h3>
 <% end %>
-<%= form_with url: cart_path, local: true, method: :post do %>
+<%= form_with url: checkout_path, local: true, method: :post do %>
   <h1>Adoption cart</h1>
   <% if @cart.empty? %>
     <p>The cart is empty.</p>
     <%= link_to 'Adopt books', status_products_path(:status => "available") %>
   <% else %>
     <% @cart.each do |product| %>
-      <h4><b><%= product.title %></b><div style="float:right"><%= number_to_currency(product.adopt_amount, strip_insignificant_zeros: true) %></div></h4>
+      <h4><b><%= link_to product.title, product %></b><div style="float:right"><%= number_to_currency(product.adopt_amount, strip_insignificant_zeros: true) %></div></h4>
       <div>
         <%= label_tag 'Dedication' %>
         <%= text_field_tag product.id.to_s + '_dedication', session[:cart][product.id.to_s]['dedication'] %>

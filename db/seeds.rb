@@ -9,7 +9,6 @@ csv.each do |row|
   t.address = row['Adopter Address']
   t.phone = row['Adopter Phone']
   t.email = row['Adopter Email']
-  t.time = row['Adopt time']
   t.save
 end
 
@@ -31,6 +30,7 @@ csv.each do |row|
   t.dedication = row['Dedication']
   t.recognition = row['Recognition']
   t.adopter_id = row['Adopter ID']
+  t.adopt_time = row['Adopt time']
   t.save
 end
 
