@@ -45,7 +45,15 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.8'
+  # Use rails-controller-testing for testing a controller
+  gem 'rails-controller-testing'
+  # Use rubocop for static code analysis
   gem 'rubocop', '~> 0.81.0', require: false
+  # Use coveralls for code-coverage
+  gem 'coveralls', require: false
+  # Use simplecov to generate the coveralls report in .html format
+  gem 'rspec_junit_formatter'
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -60,7 +68,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'coveralls', require: false
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'

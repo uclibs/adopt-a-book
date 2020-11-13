@@ -32,3 +32,9 @@
 
 # Ignore coverage folder
 coverage/
+
+# Ignore .DS_Store files
+.DS_Store
+db/.DS_Store
+lib/.DS_Store
+lib/seeds/.DS_Store
