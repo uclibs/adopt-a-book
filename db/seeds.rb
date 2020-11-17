@@ -33,7 +33,3 @@ csv.each do |row|
   t.adopt_time = row['Adopt time']
   t.save
 end
-
-# Delete table contents
-# Product.delete_all
-# Adopter.delete_all
