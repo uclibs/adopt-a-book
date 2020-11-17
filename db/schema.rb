@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_22_160750) do
+ActiveRecord::Schema.define(version: 2020_11_09_181824) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2020_10_22_160750) do
     t.string "address"
     t.integer "phone", limit: 10
     t.string "email"
-    t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_160750) do
     t.integer "adopter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "adopt_time"
     t.index ["adopter_id"], name: "index_products_on_adopter_id"
   end
 

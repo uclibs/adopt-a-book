@@ -11,9 +11,14 @@ class ApplicationController < ActionController::Base
 
   def check_session_expiry
     if !session[:expires_at].nil? && (session[:expires_at] < Time.now)
+      Product.where(id: session[:cart].keys).update_all(adopt_status: Product.adopt_statuses[:available])
       reset_session
     else
       session[:expires_at] = 10.seconds.from_now
     end
+  end
+
+  def cart_session_exists?
+    redirect_to root_path, alert: 'Session expired!' if session[:cart].nil?
   end
 end

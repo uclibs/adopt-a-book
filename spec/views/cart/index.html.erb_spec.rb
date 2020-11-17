@@ -30,7 +30,7 @@ RSpec.describe('cart/index', type: :view) do
         assert_select 'h4>b', text: 'Title'.to_s, count: 2
         assert_select 'div>label', text: 'Dedication'.to_s, count: 2
         assert_select 'div>label', text: 'Recognition'.to_s, count: 2
-        assert_select 'div>input', text: '', count: 4
+        assert_select 'div>input', count: 4
       end
     end
 

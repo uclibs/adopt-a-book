@@ -1,0 +1,52 @@
+<% if alert %>
+  <h3><b class="alert"><%= alert %></b></h3>
+<% end %>
+<%= form_with url:'payment', local: true, method: :post do %>
+  <h1>Adopter information form</h1>
+  <p>Please review the information below. If any changes are needed, click on cart icon in the header to make corrections and checkout again.</p>
+  <h3>Adopted books:</h3>
+  <% @cart.each do |product| %>
+    <b><%= product.title %></b>
+    <br /><br />
+    <% unless session[:cart][product.id.to_s]['dedication'].blank? %>
+      <div>
+        <b><%= label_tag 'Dedication:' %></b>
+        <%= session[:cart][product.id.to_s]['dedication'] %>
+      </div>
+      <br />
+    <% end %>
+    <% unless session[:cart][product.id.to_s]['recognition'].blank? %>
+      <div>
+        <b><%= label_tag 'Recognition:' %></b>
+        <%= session[:cart][product.id.to_s]['recognition'] %>
+      </div>
+      <br />
+    <% end %>
+    <hr />
+  <% end %>
+  <b>Total amount to be paid: <%= number_to_currency(@cart.map(&:adopt_amount).sum, strip_insignificant_zeros: true) %></b>
+  <p>Please fill out all information</p>
+  <div>
+    <%= label_tag 'First Name*' %>
+    <%= text_field_tag 'fname' %>
+  </div>
+  <div>
+    <%= label_tag 'Last Name*' %>
+    <%= text_field_tag 'lname' %>
+  </div>
+  <div>
+    <%= label_tag 'Address*' %>
+    <%= text_field_tag 'address' %>
+  </div>
+  <div>
+    <%= label_tag 'Email*' %>
+    <%= email_field_tag 'email' %>
+  </div>
+  <div>
+    <%= label_tag 'Phone*' %>
+    <%= number_field_tag 'phone' %>
+  </div><br />
+  <div>
+    <%= submit_tag "Make Payment"%>
+  </div>
+<% end %>

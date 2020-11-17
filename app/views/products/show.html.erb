@@ -57,12 +57,14 @@
   <%= @product.release_year %>
 </p>
 
-<% unless @product.dedication.blank? && @product.recognition.blank? %>
+<% unless @product.dedication.blank? %>
   <p>
     <strong>Dedication:</strong>
     <%= @product.dedication %>
   </p>
+<% end %>
 
+<% unless @product.recognition.blank? %>
   <p>
     <strong>Recognition:</strong>
     <%= @product.recognition %>
@@ -97,7 +99,7 @@
 
   <p>
     <strong>Adopt time:</strong>
-    <%= @adopter.time %>
+    <%= @product.adopt_time %>
   </p>
 <% end %>
 
@@ -107,7 +109,7 @@
     <%= link_to 'View cart', cart_path %>
     <%= link_to 'Adopt more books', status_products_path(:status => "available") %>
   </p>
-<% else %>
+<% elsif @product.available? %>
   <p><%= link_to 'Add to cart', @product, remote: true, method: :post %></p>
 <% end %>
 
