@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       Product.where(id: session[:cart].keys).update_all(adopt_status: Product.adopt_statuses[:available])
       reset_session
     else
-      session[:expires_at] = 10.seconds.from_now
+      session[:expires_at] = ENV['CART_EXPIRY_TIME'].to_i.minutes.from_now
     end
   end
 

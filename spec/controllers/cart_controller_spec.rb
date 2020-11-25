@@ -58,6 +58,7 @@ RSpec.describe CartController, type: :controller do
       expect(Adopter.find(1).address).to eq 'Address'
       expect(Adopter.find(1).phone).to eq 1_234_567_890
       expect(Adopter.find(1).email).to eq 'adopter@exapmple.com'
+      expect(ActionMailer::Base.deliveries.count).to eq 2
     end
   end
 end
