@@ -1,7 +1,7 @@
 <% if alert %>
   <h3><b class="alert"><%= alert %></b></h3>
 <% end %>
-<%= form_with url:'payment', local: true, method: :post do %>
+<%= form_with url: payment_path, local: true, method: :post do %>
   <h1>Adopter information form</h1>
   <p>Please review the information below. If any changes are needed, click on cart icon in the header to make corrections and checkout again.</p>
   <h3>Adopted books:</h3>

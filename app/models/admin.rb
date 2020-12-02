@@ -4,5 +4,5 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates_presence_of :email, :password
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :timeoutable, timeout_in: 30.seconds
+         :recoverable, :rememberable, :validatable, :timeoutable, timeout_in: ENV['ADMIN_EMPIRY_TIME'].to_i.minutes
 end

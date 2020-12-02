@@ -1,0 +1,15 @@
+Adopt-a-book program by University of Cincinnati Libraries
+
+We received an order through 'Adopt-a-book' program.
+
+Number of books: <%= @product_count %>
+Book <%= 'ID'.pluralize(@product_count)%>: <%= @product_ids.map(&:to_i) %>
+Book <%= 'title'.pluralize(@product_count)%>: <%= @product_titles %>
+Name: <%= @adopter.fname + ' ' + @adopter.lname %>
+Address: <%= @adopter.address %>
+Phone: <%= @adopter.phone %>
+Email: <%= @adopter.email %>
+
+Please track the adoption process and change the adopt_status to '1' once the payment is done.
+
+Thank you.

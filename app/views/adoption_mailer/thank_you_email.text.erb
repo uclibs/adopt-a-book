@@ -1,0 +1,9 @@
+Adopt-a-book program by University of Cincinnati Libraries
+
+Hi <%= @adopter.fname + ' ' + @adopter.lname%>,
+
+Thank you for adopting <%= 'book'.pluralize(@product_count) %> from UC Libraries! Your pre-order is complete. You will also receive a confirmation email from the UC Foundation, by the sender <%= ENV['UC_FOUNDATION_MAIL_ADDRESS'] %> after your payment is complete. It is possible for the confirmation email to land in your junk/spam folder.
+
+If you have any questions, please contact Christa Bernardo at +1(513)-556-0055 or <%= ENV['ADMIN_MAIL_ADDRESS'] %>
+
+Thank you.

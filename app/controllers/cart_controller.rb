@@ -39,6 +39,7 @@ class CartController < ApplicationController
     session[:cart].keys.each do |id|
       Product.find(id).update(adopter_id: @adopter.id, adopt_status: Product.adopt_statuses[:pending], adopt_time: Time.now, dedication: session[:cart][id]['dedication'], recognition: session[:cart][id]['recognition'])
     end
+    send_emails
     %i[cart expires_at visit_count].each { |x| session.delete(x) }
     redirect_to root_path, notice: 'Adopt success!'
   end
@@ -60,5 +61,10 @@ class CartController < ApplicationController
 
   def adopter_exists?
     @adopter
+  end
+
+  def send_emails
+    AdoptionMailer.with(adopter: @adopter, product_count: session[:cart].keys.count).thank_you_email.deliver_now
+    AdoptionMailer.with(product_ids: session[:cart].keys, adopter: @adopter).adoption_notification_email.deliver_now
   end
 end

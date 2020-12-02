@@ -15,7 +15,7 @@ RSpec.describe ApplicationController, type: :controller do
     @controller = ApplicationController.new
     it 'initializes expiry session' do
       @controller.instance_eval { check_session_expiry }
-      expect(@controller.instance_eval { session[:expires_at] }).to be_within(1.second).of(10.seconds.from_now)
+      expect(@controller.instance_eval { session[:expires_at] }).to be_within(1.second).of(ENV['CART_EXPIRY_TIME'].to_i.minutes.from_now)
     end
 
     before do
@@ -23,7 +23,7 @@ RSpec.describe ApplicationController, type: :controller do
       @product = FactoryBot.create(:pending_product)
       @controller.instance_eval { initialize_session }
       @controller.instance_eval { check_session_expiry }
-      travel_to(11.seconds.from_now)
+      travel_to((ENV['CART_EXPIRY_TIME'].to_i + 1.second).minutes.from_now)
       @controller.instance_eval { check_session_expiry }
     end
 

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Adopt-a-book program by University of Cincinnati Libraries</h3>
+    <p> Hi <%= @adopter.fname + ' ' + @adopter.lname%>, </p>
+    <p>
+      Thank you for adopting <%= 'book'.pluralize(@product_count) %> from UC Libraries!  Your pre-order is complete.
+      You will also receive a confirmation email from the UC Foundation, by the sender <%= mail_to ENV['UC_FOUNDATION_MAIL_ADDRESS'] %> after your payment is complete. It is possible for the confirmation email to land in your junk/spam folder.
+    </p>
+    <p> If you have any questions, please contact Christa Bernardo at +1(513)-556-0055 or <%= mail_to ENV['ADMIN_MAIL_ADDRESS'] %> </p>
+    <p> Thank you. </p>
+  </body>
+</html>
