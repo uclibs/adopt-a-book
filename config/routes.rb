@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'products/:id', to: 'products#add'
   delete 'cart/:id', to: 'cart#remove', as: 'remove'
   get 'cart', to: 'cart#index'
-  post 'cart/checkout', to: 'cart#checkout', as: 'checkout'
+  match 'cart/checkout' => 'cart#checkout', as: 'checkout', via: %i[get post]
   post 'cart/payment', to: 'cart#payment', as: 'payment'
   delete 'cart', to: 'cart#destroy'
   devise_for :admins, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }

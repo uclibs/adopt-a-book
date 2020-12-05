@@ -1,7 +1,6 @@
 # CartController manages cart session for every adopter
 class CartController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :cart_session_exists?
   before_action :set_cart, only: %i[index checkout]
   before_action :set_adopter
 
@@ -16,7 +15,7 @@ class CartController < ApplicationController
 
   def destroy
     Product.where(id: session[:cart].keys).update_all(adopt_status: Product.adopt_statuses[:available])
-    %i[cart expires_at visit_count].each { |x| session.delete(x) }
+    %i[cart expires_at].each { |x| session.delete(x) }
     redirect_to root_path
   end
 
@@ -40,7 +39,7 @@ class CartController < ApplicationController
       Product.find(id).update(adopter_id: @adopter.id, adopt_status: Product.adopt_statuses[:pending], adopt_time: Time.now, dedication: session[:cart][id]['dedication'], recognition: session[:cart][id]['recognition'])
     end
     send_emails
-    %i[cart expires_at visit_count].each { |x| session.delete(x) }
+    %i[cart expires_at].each { |x| session.delete(x) }
     redirect_to root_path, notice: 'Adopt success!'
   end
 

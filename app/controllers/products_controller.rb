@@ -2,8 +2,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_admin!, except: %i[show index add]
   before_action :set_product, only: %i[show edit update destroy]
-  before_action :cart_session_exists?, only: :add
-  # skip_before_action :verify_authenticity_token, only: :action?
+  skip_before_action :verify_authenticity_token
   # GET /products
   # GET /products.json
   def index
