@@ -1,0 +1,51 @@
+<header>
+  <div id="header-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <%= image_tag 'uclogo.png', height: '50'%>
+        </div>
+        <div class="text col-6 text-right">
+            LIBRARIES
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="header-bottom">
+    <div class="container">
+      <div class="row">
+        <div id="logo" class="col-3">
+          <%= link_to image_tag('logo.png'), root_path %>
+        </div>
+        <div id="links" class="col-8">
+            <nav class="navbar">
+              <ul class="nav justify-content-center">
+                <li class="nav-item">
+                  <%= link_to 'Available Books', status_products_path(:status => 'available'), :class => 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Adopted Books', status_products_path(:status => 'adopted'), :class => 'nav-link' %>
+                <li>
+                <li class="nav-item">
+                  <%= link_to 'Event', '/', :class => 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Donors', '/', :class => 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Contact', '/', :class => 'nav-link' %>
+                </li>
+            </nav>
+        </div>
+        <div class="col-1">
+          <nav class="navbar">
+            <%= link_to image_tag('cart.png'), cart_path %>
+            <% unless session[:cart].blank? %>
+              <%= link_to session[:cart].keys.count, cart_path, class: 'btn btn-circle' %>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

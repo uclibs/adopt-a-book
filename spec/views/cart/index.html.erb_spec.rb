@@ -13,6 +13,7 @@ RSpec.describe('cart/index', type: :view) do
     it 'renders attributes in <p>' do
       render
       expect(rendered).to(match(/The cart is empty./))
+      expect(rendered).to have_selector('img', count: 1)
       expect(rendered).to have_link('Adopt books')
     end
   end
@@ -27,10 +28,11 @@ RSpec.describe('cart/index', type: :view) do
         render
         expect(rendered).to have_content('$1,500.39', count: 2)
         expect(rendered).to have_content('Total price: $3,000.78')
-        assert_select 'h4>b', text: 'Title'.to_s, count: 2
-        assert_select 'div>label', text: 'Dedication'.to_s, count: 2
-        assert_select 'div>label', text: 'Recognition'.to_s, count: 2
-        assert_select 'div>input', count: 4
+        expect(rendered).to have_selector('img', count: 4)
+        assert_select 'div>a', text: 'Title'.to_s, count: 2
+        assert_select 'div>label', text: 'Dedication:'.to_s, count: 2
+        assert_select 'div>label', text: 'Recognition:'.to_s, count: 2
+        assert_select 'div>input', count: 5
       end
     end
 
@@ -41,10 +43,13 @@ RSpec.describe('cart/index', type: :view) do
       end
       it 'renders all products in the cart' do
         render
-        assert_select 'h4>b', text: 'Title'.to_s, count: 2
-        assert_select 'div>label', text: 'Dedication'.to_s, count: 2
-        assert_select 'div>label', text: 'Recognition'.to_s, count: 2
-        assert_select 'div>input', count: 4
+        expect(rendered).to have_content('$1,500.39', count: 2)
+        expect(rendered).to have_content('Total price: $3,000.78')
+        expect(rendered).to have_selector('img', count: 4)
+        assert_select 'div>a', text: 'Title'.to_s, count: 2
+        assert_select 'div>label', text: 'Dedication:'.to_s, count: 2
+        assert_select 'div>label', text: 'Recognition:'.to_s, count: 2
+        assert_select 'div>input', count: 5
         assert_select 'div>input[name="1_dedication"][value="1_dedication"]'
         assert_select 'div>input[name="2_dedication"][value="2_dedication"]'
         assert_select 'div>input[name="1_recognition"][value="1_recognition"]'

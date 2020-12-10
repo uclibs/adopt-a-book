@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AdoptABook</title>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+    <title>Adopt-A-Book | UC Libraries</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,7 +14,16 @@
   </head>
 
   <body>
-    <%= yield %>
-    <%= render "layouts/cart_expiry_confirm.html.erb" %>
+    <div class="wrapper">
+      <%= render "layouts/header.html.erb" %>
+      <br>
+      <div class="main-content container">
+        <p id="notice"><%= notice %></p>
+        <%= yield %>
+      </div>
+      <br>
+      <%= render "layouts/cart_expiry_confirm.html.erb" %>
+      <%= render "layouts/footer.html.erb" %>
+    </div>
   </body>
 </html>

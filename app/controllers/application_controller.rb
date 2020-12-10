@@ -1,5 +1,6 @@
 # ApplicationController manages cart initialization and expiration across all modules
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   before_action :initialize_session
   before_action :check_session_expiry
 
