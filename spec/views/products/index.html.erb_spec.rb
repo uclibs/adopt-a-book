@@ -1,17 +1,22 @@
 require('rails_helper')
 
 RSpec.describe('products/index', type: :view) do
+  include Pagy::Backend
+
   before(:each) do
-    @products = FactoryBot.create_list(:product, 2)
+    # @products = FactoryBot.create_list(:product, 2)
+    @pagy, @products = pagy_array(FactoryBot.create_list(:product, 2), items: ENV['ITEMS_PER_PAGE'])
+    @adopt_status = 'available'
   end
 
   context 'for available books with status is available' do
     before do
-      @products = Product.send('available')
+      @pagy, @products = pagy(Product.send('available'), items: ENV['ITEMS_PER_PAGE'])
+      @adopt_status = 'available'
     end
     it 'renders a list of products' do
       render
-      assert_select 'tr>td', text: 'Title: Title'.to_s, count: 2
+      assert_select 'tr>td', text: 'Title'.to_s, count: 2
       assert_select 'tr>td', text: 'Author: Author'.to_s, count: 2
       assert_select 'tr>td', text: 'Category: Category'.to_s, count: 2
       assert_select 'tr>td', text: 'Library: Library'.to_s, count: 2
@@ -21,7 +26,8 @@ RSpec.describe('products/index', type: :view) do
 
   context 'for adopted books with status is adopted' do
     before do
-      @products = Product.send('adopted')
+      @pagy, @products = pagy(Product.send('adopted'), items: ENV['ITEMS_PER_PAGE'])
+      @adopt_status = 'adopted'
     end
     it 'renders a list of products' do
       render
@@ -77,5 +83,10 @@ RSpec.describe('products/index', type: :view) do
       render
       expect(rendered).to have_text('Logged in as random@example.com')
     end
+  end
+
+  it 'displays a pagination widget' do
+    render
+    expect(rendered).to have_text('Prev1Next')
   end
 end

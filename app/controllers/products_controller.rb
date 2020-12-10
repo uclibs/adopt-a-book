@@ -6,11 +6,13 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = if Product.adopt_statuses.key? params['status'] # security check that it's a valid param
-                  Product.send(params['status'])
-                else
-                  Product.available # if not a valid status param, just return available products
-                end
+    @pagy, @products = if Product.adopt_statuses.key? params['status'] # security check that it's a valid param
+                         @adopt_status = params['status']
+                         pagy(Product.send(params['status']), items: ENV['ITEMS_PER_PAGE'])
+                       else
+                         @adopt_status = 'available'
+                         pagy(Product.available, items: ENV['ITEMS_PER_PAGE']) # if not a valid status param, just return available products
+                       end
   end
 
   # GET /products/1

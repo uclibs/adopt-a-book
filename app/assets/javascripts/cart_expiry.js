@@ -1,5 +1,5 @@
 const cart_expiry_time = 30
-const confirm_dialog_time = 25
+const confirm_dialog_time = 20
 
 var timeoutIds = [];
 
