@@ -63,4 +63,13 @@ footer {
   #links {
     font-weight: 600;
   }
+
+  #login {
+    float: right;
+    padding-top: 10px;
+    p {
+      margin: 10px;
+      font-size: 16px;
+    }
+  }
 }

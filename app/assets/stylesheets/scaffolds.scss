@@ -122,6 +122,11 @@ div {
 
 .link {
   color: #046B99;
+  margin-right: 15px;
+  &:hover {
+    color: #000;
+    text-decoration: none;
+  }
 }
 
 .product-title {
@@ -129,6 +134,11 @@ div {
   font-size: 16px;
   font-weight: bold;
   padding-bottom: 3px;
+
+  &:hover {
+    color: #000;
+    text-decoration: none;
+  }
 }
 
 .bookplate-readmore {
@@ -150,9 +160,9 @@ div {
 }
 
 .btn.btn-default {
+  margin-right: 30px;
   background-color: black;
   color: white;
-  margin: 4px 2px;
   border-radius: 4px;
 
   &:hover {

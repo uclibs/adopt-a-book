@@ -1,7 +1,7 @@
 # ProductsController controls CRUD operations of the products
 class ProductsController < ApplicationController
   before_action :authenticate_admin!, except: %i[show index add]
-  before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_product, only: %i[show edit update destroy add]
   skip_before_action :verify_authenticity_token
   # GET /products
   # GET /products.json
@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to status_products_path(status: 'available'), notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,9 +73,13 @@ class ProductsController < ApplicationController
     return unless session[:cart]
 
     id = params[:id]
-    Product.find(id).update(adopt_status: Product.adopt_statuses[:pending])
-    session[:cart][id] = {} unless session[:cart].key?(id)
-    redirect_back(fallback_location: :product)
+    if @product.available?
+      @product.update(adopt_status: Product.adopt_statuses[:pending])
+      session[:cart][id] = {} unless session[:cart].key?(id)
+      redirect_back(fallback_location: :product)
+    else
+      redirect_to status_products_path(status: 'available'), alert: 'Sorry! The book is currently unavailable.'
+    end
   end
 
   private

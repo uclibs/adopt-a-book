@@ -18,4 +18,9 @@ class ApplicationController < ActionController::Base
       session[:expires_at] = ENV['CART_EXPIRY_TIME'].to_i.minutes.from_now
     end
   end
+
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(_resource)
+    new_admin_session_path
+  end
 end

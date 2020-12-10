@@ -16,9 +16,13 @@
   <body>
     <div class="wrapper">
       <%= render "layouts/header.html.erb" %>
-      <br>
+      <br><br>
       <div class="main-content container">
-        <p id="notice"><%= notice %></p>
+        <% if alert %>
+          <p id="alert" style="color: red"><%= alert %></p>
+        <% elsif notice %>
+          <p id="notice"><%= notice %></p>
+        <% end %>
         <%= yield %>
       </div>
       <br>

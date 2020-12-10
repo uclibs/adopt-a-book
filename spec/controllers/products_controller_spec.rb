@@ -192,18 +192,30 @@ RSpec.describe(ProductsController, type: :controller) do
 
     it 'redirects to the products list' do
       delete :destroy, params: { id: @product.to_param }, session: valid_session
-      expect(response).to(redirect_to(products_url))
+      expect(response).to(redirect_to(status_products_path(status: 'available')))
     end
   end
 
   describe 'POST #add' do
-    it 'product is added to cart' do
-      expect do
+    context 'when product is available' do
+      it 'product is added to cart' do
+        expect do
+          post :add, params: { id: @product.to_param }, session: valid_session
+        end.to(change(session[:cart], :count).by(1))
+        @product.reload
+        expect(@product.adopt_status).to eq('pending')
+        expect(response).to(redirect_to(@product))
+      end
+    end
+
+    context 'when product is unavailble(in cart of others)' do
+      before do
+        @product = FactoryBot.create(:pending_product)
+      end
+      it 'redirects to products available page with unavailable alert' do
         post :add, params: { id: @product.to_param }, session: valid_session
-      end.to(change(session[:cart], :count).by(1))
-      @product.reload
-      expect(@product.adopt_status).to eq('pending')
-      expect(response).to(redirect_to(@product))
+        expect(response).to(redirect_to(status_products_path(status: 'available')))
+      end
     end
   end
 end
