@@ -139,7 +139,7 @@
       <%= link_to 'View cart', cart_path, class: 'btn btn-default'%>
       <%= link_to 'Adopt more books', status_products_path(:status => "available"), class: 'btn btn-default' %>
     </p>
-  <% elsif @product.available? %>
+  <% elsif @product.available? && !admin_signed_in? %>
     <%= link_to 'Add to cart', @product, remote: true, method: :post, class: "btn btn-default" %>
   <% end %>
 

@@ -60,7 +60,7 @@
     </div>
     <div class="mt-2">
       <%= label_tag 'Phone*' %>
-      <%= number_field_tag 'phone', nil, required: true, class: 'form-input', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' %>
+      <%= phone_field_tag 'phone', nil, required: true, class: 'form-input', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' %>
       Format: 123-456-7890
     </div><br />
     <div>

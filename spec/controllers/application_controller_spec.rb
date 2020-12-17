@@ -35,4 +35,13 @@ RSpec.describe ApplicationController, type: :controller do
       expect(session).to be_empty
     end
   end
+
+  describe 'logout' do
+    before do
+      @admin = FactoryBot.create(:admin)
+    end
+    it 'redirects to admin login page' do
+      expect(@controller.instance_eval { after_sign_out_path_for(@admin) }).to eq new_admin_session_path
+    end
+  end
 end

@@ -1,61 +1,58 @@
-<% if admin_signed_in? && current_admin %>
-    <p>Logged in as <%= current_admin.email %>
-    <%= link_to "Logout", destroy_admin_session_path, :method => :delete, data: { confirm: 'Are you sure?' } %></p>
-<% end %>
-
 <h3 id="heading"><%= @adopt_status.capitalize %> books</h3><br>
 
 <% unless @products.blank? %>
   <% @products.each do |product| %>
   <div class="row">
-      <div class="col-3">
-        <%# Replace with @product.title in place of sample_image.jpg when all images are available %>
-        <%= link_to (image_tag 'sample_image.jpg', width: '130', height: '170', class: 'book-image'), product %>
-      </div>
-      <div  class="col-9">
-        <table>
-          <tbody>
-              <tr>
-                <td><%= link_to product.title, product, class: 'product-title' %></td>
-              </tr>
-              <tr>
-                <td></td>
-              </tr>
-              <tr>
-                <td><strong>Adoption amount: </strong><%= number_to_currency(product.adopt_amount, strip_insignificant_zeros: true) %></td>
-              </tr>
-              <tr>
-                <td><strong>Author: </strong><%= product.author %></td>
-              </tr>
-              <tr>
-                <td><strong>Category: </strong><%= product.category %></td>
-              </tr>
-              <tr>
-                <td><strong>Library: </strong><%= product.library %></td>
-              </tr>
-              <tr>
-                <td><%= link_to 'Read more', product, class: 'link' %>
-                  <% if admin_signed_in? %>
-                    <%= link_to 'Edit', edit_product_path(product) %>
-                    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  <% end %>
-                  </td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="col-3">
+      <%# Replace with @product.title in place of sample_image.jpg when all images are available %>
+      <%= link_to (image_tag 'sample_image.jpg', width: '130', height: '170', class: 'book-image'), product %>
     </div>
-    <br><br>
-  <% end %>
+    <div  class="col-9">
+      <table>
+        <tbody>
+            <tr>
+              <td><%= link_to product.title, product, class: 'product-title' %></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong>Adoption amount: </strong><%= number_to_currency(product.adopt_amount, strip_insignificant_zeros: true) %></td>
+            </tr>
+            <tr>
+              <td><strong>Author: </strong><%= product.author %></td>
+            </tr>
+            <tr>
+              <td><strong>Category: </strong><%= product.category %></td>
+            </tr>
+            <tr>
+              <td><strong>Library: </strong><%= product.library %></td>
+            </tr>
+            <tr>
+              <td><%= link_to 'Read more', product, class: 'link' %>
+                <% if admin_signed_in? %>
+                  <%= link_to 'Edit', edit_product_path(product), class: 'link' %>
+                  <% if product.available? %>
+                    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link' %>
+                  <% end %>
+                <% end %>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br><br>
+<% end %>
 <% else %>
   <p> No books found.  </p>
 <% end %>
 
+<% if admin_signed_in? && @adopt_status == 'available' %>
+  <%= link_to 'New Product', new_product_path, class: 'btn btn-default' %>
+<% end %>
+<br>
+
 <% unless @products.blank? %>
   <%= pagy_bootstrap_nav(@pagy).html_safe %>
-<% end %>
-
-<br>
-<% if admin_signed_in? %>
-  <%= link_to 'New Product', new_product_path %>
 <% end %>
