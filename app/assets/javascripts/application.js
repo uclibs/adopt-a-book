@@ -12,11 +12,12 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
+//= require turbolinks
 //= require jquery3
 //= require jquery-ui
 //= require jquery_ujs
 //= require popper
 //= require bootstrap
 //= stub 'cart_expiry'
+//= require tinymce-jquery

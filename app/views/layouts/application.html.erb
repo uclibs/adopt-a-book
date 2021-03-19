@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">  
 <html>
   <head>
     <%= favicon_link_tag asset_path('favicon.ico') %>
@@ -8,6 +9,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <% unless admin_signed_in? %>
       <%= javascript_include_tag 'cart_expiry'%>
     <% end %>

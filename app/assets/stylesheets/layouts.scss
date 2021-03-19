@@ -6,31 +6,25 @@ footer {
   a {
     color: #fff;
     text-decoration: underline;
-
     &:visited {
       color: #fff;
     }
-
     &:hover {
       color: #fff;
       text-decoration: none;
     }
   }
 }
-
 #header-top {
   background-color: #e00122;
-
   .text {
     font-size: 25px;
     color: #fff;
     padding-top: 10px;
   }
 }
-
 #header-bottom {
   background-color: #000;
-
   .btn.btn-circle {
     background-color: white;
     color: black;
@@ -39,31 +33,25 @@ footer {
     margin-top: -55px;
     margin-left: 30px;
   }
-
   a {
     color: #fff;
     text-transform: uppercase;
     font-size: 15px;
-
     &:visited {
       color: #fff;
     }
-
     &:hover {
       text-decoration: none;
     }
   }
-
   #logo {
     img {
       position: absolute;
     }
   }
-
   #links {
     font-weight: 600;
   }
-
   #login {
     float: right;
     padding-top: 10px;
