@@ -6,6 +6,10 @@ RSpec.describe PagesController, type: :routing do
       get '/event'
       expect(response).to redirect_to('/pages/2')
     end
+    it 'GET /donors', type: :request do
+      get '/donors'
+      expect(response).to redirect_to('/pages/3')
+    end
     it 'routes to #new' do
       expect(get: '/pages/new').to route_to('pages#new')
     end

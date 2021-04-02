@@ -1,6 +1,7 @@
 require('csv')
 
 Page.create(id: 2, title: 'Event', content: '<p>Edit this page to add content.</p>')
+Page.create(id: 3, title: 'Donors', content: '<p>Edit this page to add content.</p>')
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Adopters.csv'))
 csv = CSV.parse(csv_text, headers: true, encoding: 'utf-8')
