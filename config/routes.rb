@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   resources :pages, except: 'index'
   get '/event' => redirect('/pages/2')
+  get '/donors' => redirect('/pages/3')
   post 'products/:id', to: 'products#add'
   delete 'cart/:id', to: 'cart#remove', as: 'remove'
   get 'cart', to: 'cart#index'
