@@ -96,5 +96,4 @@ Rails.application.configure do
 
   # Needed for mail to work in production
   config.action_mailer.smtp_settings = { enable_starttls_auto: false }
-  
 end

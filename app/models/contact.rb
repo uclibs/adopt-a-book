@@ -1,15 +1,16 @@
+# contact model describes model attributes of contacts
 class Contact < MailForm::Base
-  attribute :fname,    :validate=>true
-  attribute :lname,    :validate=>true
-  attribute :email,    :validate=> /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  attribute :phone    
-  attribute :message,  :validate=>true
+  attribute :fname,    validate: true
+  attribute :lname,    validate: true
+  attribute :email,    validate: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  attribute :phone
+  attribute :message, validate: true
 
-def headers
-  {
-  :subject => "Contact Form",
-  :to => "fake-admin@uc.edu",
-  :from => %("#{fname} #{lname}" <#{email}>)
-}
-end
+  def headers
+    {
+      subject: 'Contact Form',
+      to: ENV['APP_MAIL_ADDRESS'],
+      from: %("#{fname} #{lname}" <#{email}>)
+    }
+  end
 end

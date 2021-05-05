@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 source('https://rubygems.org')
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-#ruby
+# ruby
 ruby('2.7.0')
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem('rails', '~> 5.2.4', '>= 5.2.4.2')
@@ -62,6 +63,7 @@ group :development, :test do
   # Use coveralls for code-coverage
   gem 'coveralls', require: false
   # Use simplecov to generate the coveralls report in .html format
+  gem 'figaro'
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
 end
