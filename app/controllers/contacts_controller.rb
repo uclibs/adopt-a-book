@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     if @contact.deliver
-      ContactMailer.welcome_email(@contact).deliver
+      ContactMailer.contact_form(@contact).deliver
     else
       flash.now[:error] = 'cannot send message'
       render :new
