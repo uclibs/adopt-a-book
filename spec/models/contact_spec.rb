@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
   subject do
-    described_class.new(fname: 'john', lname: 'doe', email: 'john@doe.com', phone: 'a12d', message: 'hello')
+    described_class.new(fname: 'john', lname: 'doe', email: 'john@doe.com', phone: '1234567890', message: 'hello')
   end
   describe 'Validations' do
     it 'is valid with valid attributes' do
