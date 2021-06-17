@@ -1,0 +1,16 @@
+version: "3"
+services:
+  webapp:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+      labels:
+      - "adopt_a_book:latest"
+    environment:
+    - RAILS_ENV=development
+    env_file:
+    - .env.development
+    ports:
+    - "3000:3000"
+    volumes:
+    - ./db/development.sqlite3:/opt/app/db/development.sqlite3
