@@ -127,6 +127,6 @@ RSpec.describe('products/index', type: :view) do
 
   it 'displays a pagination widget' do
     render
-    expect(rendered).to have_text('Prev1Next')
+    expect(rendered).to have_text('1Next')
   end
 end
