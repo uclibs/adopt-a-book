@@ -13,6 +13,8 @@ class ProductsController < ApplicationController
                          @adopt_status = 'available'
                          pagy(Product.available, items: ENV['ITEMS_PER_PAGE']) # if not a valid status param, just return available products
                        end
+    search_products
+    redirect_reset
   end
 
   # GET /products/1
@@ -83,6 +85,19 @@ class ProductsController < ApplicationController
   end
 
   private
+
+def search_products
+  unless params[:search].nil? || params[:category].nil? || params[:library].nil?
+    @pagy, @products = pagy(Product.where(['title LIKE ? AND category LIKE? AND library LIKE?', "%#{params[:search]}%","%#{params[:category]}%","%#{params[:library]}%"]),items: 8)
+  else
+    @pagy, @products = pagy(Product.all, items: 8)
+  end
+end
+
+def redirect_reset
+ redirect_to status_products_path if params[:reset]
+end
+
 
   # Use callbacks to share common setup or constraints between actions.
   def set_product
