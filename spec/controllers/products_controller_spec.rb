@@ -85,7 +85,19 @@ RSpec.describe(ProductsController, type: :controller) do
         expect(response).to(be_successful)
       end
     end
+
+
+    context 'when searching by category' do
+      before do
+        @product = FactoryBot.create(:product, category: 'Build The Collection')
+      end
+      it 'returns a success response when searching by category' do
+        get :index, params: { status: 'adopted', category: 'Build The Collection' }, session: valid_session
+        expect(response).to(be_successful)
+       end
+     end
   end
+
 
   describe 'GET #show' do
     it 'returns a success response' do

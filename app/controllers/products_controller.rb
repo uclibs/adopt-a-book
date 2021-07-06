@@ -1,6 +1,6 @@
 # ProductsController controls CRUD operations of the products
 class ProductsController < ApplicationController
-  before_action :authenticate_admin!, except: %i[show index add]
+  before_action :authenticate_admin!, except: %i[show index add search]
   before_action :set_product, only: %i[show edit update destroy add]
   skip_before_action :verify_authenticity_token
   # GET /products
@@ -13,6 +13,9 @@ class ProductsController < ApplicationController
                          @adopt_status = 'available'
                          pagy(Product.available, items: ENV['ITEMS_PER_PAGE']) # if not a valid status param, just return available products
                        end
+
+    search_products
+    redirect_reset
   end
 
   # GET /products/1
@@ -84,6 +87,18 @@ class ProductsController < ApplicationController
 
   private
 
+  def search_products
+    if params[:search].nil? || params[:category].nil? || params[:library].nil?
+      @pagy, @products = pagy(Product.all, items: 8)
+    else
+      @pagy, @products = pagy(Product.where(['title LIKE ? AND category LIKE? AND library LIKE?', "%#{params[:search]}%", "%#{params[:category]}%", "%#{params[:library]}%"]), items: 8)
+    end
+  end
+
+  def redirect_reset
+    redirect_to status_products_path if params[:reset]
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_product
     @product = Product.find(params[:id])
@@ -91,6 +106,6 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:title, :author, :pub_year, :category, :image, :library, :description, :condition_treatment, :adopt_status, :adopt_amount, :release_year, :dedication, :recognition)
+    params.require(:product).permit(:reset, :title, :author, :pub_year, :category, :image, :library, :description, :condition_treatment, :adopt_status, :search, :adopt_amount, :release_year, :dedication, :recognition)
   end
 end

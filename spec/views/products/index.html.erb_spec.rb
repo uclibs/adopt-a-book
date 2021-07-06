@@ -9,6 +9,13 @@ RSpec.describe('products/index', type: :view) do
     @adopt_status = 'available'
   end
 
+  describe "GET search bar" do
+  it "renders the search bar view" do
+  get :search
+  expect(response).to render_template :search
+   end
+ end
+
   context 'for available books' do
     before do
       @pagy, @products = pagy(Product.send('available'), items: ENV['ITEMS_PER_PAGE'])
@@ -129,4 +136,26 @@ RSpec.describe('products/index', type: :view) do
     render
     expect(rendered).to have_text('Prev1Next')
   end
+
+  context 'when searching by category' do
+    let(:params) do
+      {
+        status: 'adopted'
+      }
+    end
+    before do
+      FactoryBot.create(:product, category: 'Build The Collection')
+      FactoryBot.create(:product, category: 'Preserve For The Future')
+      @pagy, @products = pagy(Product.send('adopted'), items: ENV['ITEMS_PER_PAGE'])
+      @adopt_status = 'adopted'
+    end
+
+    it 'should not allow admin to see new product and destroy links when the product is adopted' do
+      render
+      byebug
+      expect(rendered).to have_no_link('Destroy')
+      expect(rendered).to have_no_link('New Product')
+    end
+  end
+
 end
