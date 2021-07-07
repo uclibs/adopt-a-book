@@ -4,6 +4,7 @@ RSpec.describe('products/index', type: :view) do
   include Pagy::Backend
 
   before(:each) do
+    allow(view).to receive(:params).and_return('status' => 'adopted')
     # @products = FactoryBot.create_list(:product, 2)
     @pagy, @products = pagy_array(FactoryBot.create_list(:product, 2), items: ENV['ITEMS_PER_PAGE'])
     @adopt_status = 'available'
@@ -127,6 +128,54 @@ RSpec.describe('products/index', type: :view) do
 
   it 'displays a pagination widget' do
     render
-    expect(rendered).to have_text('Prev1Next')
+    expect(rendered).to have_text('1Next')
+  end
+
+  context 'when searching by category' do
+    before do
+      FactoryBot.create(:product, category: 'Build The Collection')
+      FactoryBot.create(:product, category: 'Preserve For The Future')
+      allow(view).to receive(:params).and_return(search: 'Build The Collection')
+      @pagy, @products = pagy(Product.send('adopted'), items: ENV['ITEMS_PER_PAGE'])
+      @adopt_status = 'adopted'
+    end
+
+    it 'should include the only products with Build The Collection in the category' do
+      render
+      expect(rendered).to have_text('Build The Collection')
+      expect(rendered).not_to have_text('Addressed to the Inhabitants of America')
+    end
+  end
+
+  context 'when searching by library' do
+    before do
+      FactoryBot.create(:product, library: 'Archives and Rare Books Library')
+      FactoryBot.create(:product, library: 'Robert A. Deshon and Karl J. Schlachter Library for Design, Architecture')
+      allow(view).to receive(:params).and_return(search: 'Archives and Rare Books Library')
+      @pagy, @products = pagy(Product.send('adopted'), items: ENV['ITEMS_PER_PAGE'])
+      @adopt_status = 'adopted'
+    end
+
+    it 'should include the only products with Archives and Rare Books Library in the library' do
+      render
+      expect(rendered).to have_text('Archives and Rare Books Library')
+      expect(rendered).not_to have_text('Common Sense: Addressed to the Inhabitants of America')
+    end
+  end
+
+  context 'when searching by title' do
+    before do
+      FactoryBot.create(:product, title: 'The First Book of Architecture')
+      FactoryBot.create(:product, title: 'Common Sense: Addressed to the Inhabitants of America')
+      allow(view).to receive(:params).and_return(search: 'Architecture')
+      @pagy, @products = pagy(Product.send('adopted'), items: ENV['ITEMS_PER_PAGE'])
+      @adopt_status = 'adopted'
+    end
+
+    it 'should include the only products with architecture in the title' do
+      render
+      expect(rendered).to have_text('Archives and Rare Books Library')
+      expect(rendered).not_to have_text('Addressed to the Inhabitants of America')
+    end
   end
 end

@@ -1,3 +1,24 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.input-group-btn-1{
+    /*Change the width as much as you like, but make sure margin-left and margin-right + width = 100%*/
+     width:50%;
+     margin-left:62%;
+     margin-right:25%;
+     top: 268px;
+     position: absolute;
+}
+ .input-group-btn-2{
+    /*Change the width as much as you like, but make sure margin-left and margin-right + width = 100%*/
+     width:50%;
+     margin-left:67.7%;
+     margin-right:25%;
+     top: 268px;
+     position: absolute;
+}
+ .span .form-control-label{
+     width:75%;
+}
