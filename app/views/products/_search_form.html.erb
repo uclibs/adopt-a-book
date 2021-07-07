@@ -1,4 +1,4 @@
-<%= form_tag(status_products_path, :method => "get") do %>
+<%= form_tag(status_products_path(:status => params['status']), :method => "get") do %>
 <div class="container">
    <div class="row">
       <div class="span" style="width: 300px;">
@@ -17,7 +17,7 @@
             ["Geology-Mathematics-Physics Library","Geology-Mathematics-Physics Library"],
             ["Albino Gorno Memorial Library ","Albino Gorno Memorial Library"],
             ["Donald C. Harrison Health Sciences Library","Donald C. Harrison Health Sciences Library"],
-            ["Ralph E. Oesper Chemistry-Biology Library","Ralph E. Oesper Chemistry-Biology Library"],
+            ["Ralph E. Oe sper Chemistry-Biology Library","Ralph E. Oesper Chemistry-Biology Library"],
             ["Henry R. Winkler Center for the History of the Health Professions","Henry R. Winkler Center for the History of the Health Professions"],
             ["Elliston Poetry Room","Elliston Poetry Room"]],
             params[:library]),class: "form-control-label form-control-sm",prompt: '--ALL--')%>
