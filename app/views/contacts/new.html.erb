@@ -1,0 +1,74 @@
+<header>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<h3 id="heading"> Contact Us</h3>
+<div class="row">
+<div class="col-md-6">
+<%= form_for @contact do |f| %>
+ <div class="form-group form-icons ">
+    <span class="fa fa-user"></span>
+    <%= f.text_field :fname, class: "form-control", required: true, placeholder: "First Name *" %>
+  </div>
+  <div class="form-group form-icons">
+    <span class="fa fa-user"></span>
+    <%= f.text_field :lname, class: "form-control", required: true,placeholder: "Last Name *"  %>
+  </div>
+
+  <div class="form-group form-icons">
+    <span class="fa fa-paper-plane"></span>
+    <%= f.email_field :email, class: "form-control", required: true,placeholder: "Your Email *" %>
+  </div>
+
+  <div class="form-group form-icons">
+    <span class="fa fa-phone"></span>
+    <%= f.text_field :phone, class: "form-control", placeholder: "Phone" %>
+  </div>
+<div class="form-group form-icons">
+    <span class="fa fa-comments"></span>
+    <%= f.text_area :message, class: "form-control", placeholder: "Your Message *", rows: 8  %>
+  </div>
+  <br>
+
+  <div class="form-group form-icons">
+       <span class="fa fa-sign-in"></span>
+      <%= f.button "SUBMIT", class: "btn btn-danger btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>  Just a moment..." } %>
+  </div>
+<% end %>
+</div>
+
+<div class="col-sm-6"><br>
+<br>
+<div class="card bg-light mb-3" style="width: 26rem; height: 32rem;">
+<div class="card-body">
+<div class="card-text">
+<h2>Christa Bernardo<br></h2>
+<h5><em>Director Of Development </em></h5>
+</div>
+<br>
+<div class="form-group form-icons">
+<span class="fa fa-paper-plane"></span>
+<strong>Email :</strong>
+<a href="mailto:bernarct@ucmail.uc.edu">bernarct@ucmail.uc.edu</a>
+<br>
+<br>
+<div class="form-group form-icons">
+<span class="fa fa-address-book"></span>
+<strong>Address :</strong><br>
+<br>
+640 A Langsam Library,<br>
+2911 Woodside Drive, <br>
+Cincinnati, Ohio 45221-0033
+<br>
+<br>
+<a href="https://www.google.com/maps?ll=39.13445,-84.515497&z=18&t=m&hl=en-US&gl=US&mapclient=embed&cid=8209347666385684411" target="_blank", class="btn btn-primary">Get Location</a>
+<div class="form-group form-icons">
+<br>
+<span class="fa fa-phone"></span>
+<strong>Phone :</strong>  +513-556-0055<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<header>

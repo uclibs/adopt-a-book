@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'welcome/index'
   resources :pages, except: 'index'
+  resources :contacts, only: %i[new create]
+  get '/contacts' => redirect('/contacts/new')
   get '/event' => redirect('/pages/2')
   get '/donors' => redirect('/pages/3')
   post 'products/:id', to: 'products#add'
@@ -16,6 +19,6 @@ Rails.application.routes.draw do
       get 'status/:status', to: 'products#index', as: 'status'
     end
   end
-  root 'products#index'
+  root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
