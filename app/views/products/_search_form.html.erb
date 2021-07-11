@@ -1,0 +1,40 @@
+
+ <%= form_tag(status_products_path, :method => "get", class: 'navbar-form navbar-left') do %>
+
+  <div class="input-group" style="width: 500px;">
+
+  <%= search_field_tag :search, params[:search], placeholder: "Search By Title", class: "form-control"%>
+
+  <div class="dropdown">
+  <div id="myDropdown" class="dropdown-content">
+  <%= select_tag(:category, options_for_select([["Preserve For The Future","Preserve For The Future"], ["Build The Collection","Build The Collection"]],params[:category]),prompt: '--ALL--') %>
+  </div>
+  </div>
+  <%= select_tag(:library, options_for_select([["Archives and Rare Books Library","Archives and Rare Books Library"],
+        ["John Miller Burnam Classics Library","John Miller Burnam Classics Library"],
+        ["College of Engineering and Applied Science Library","College of Engineering and Applied Science Library"],
+        ["College of Education, Criminal Justice and Human Services Library","College of Education, Criminal Justice and Human Services Library"],
+        ["Robert A. Deshon and Karl J. Schlachter Library for Design, Architecture, Art, and Planning","Robert A. Deshon and Karl J. Schlachter Library for Design, Architecture, Art, and Planning"],
+        ["Geology-Mathematics-Physics Library","Geology-Mathematics-Physics Library"],
+        ["Albino Gorno Memorial Library ","Albino Gorno Memorial Library"],
+        ["Donald C. Harrison Health Sciences Library","Donald C. Harrison Health Sciences Library"],
+        ["Ralph E. Oesper Chemistry-Biology Library","Ralph E. Oesper Chemistry-Biology Library"],
+        ["Henry R. Winkler Center for the History of the Health Professions","Henry R. Winkler Center for the History of the Health Professions"],
+        ["Elliston Poetry Room","Elliston Poetry Room"]],
+        params[:library]),prompt: '--ALL--')%>
+
+    <% end %>
+
+  <br>
+  <br>
+  <br>
+
+
+    <div class="input-group-btn-1">
+      <%= button_tag "search", :class => 'btn btn-primary',:name => nil%>
+    </div>
+
+    <div class="input-group-btn-2">
+    <%= button_tag t('buttons.reset'), :class => 'btn btn-primary',type: "submit", name: "reset", value: true %>
+    </div>
+  </div>
