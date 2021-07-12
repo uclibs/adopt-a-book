@@ -4,6 +4,7 @@ RSpec.describe('products/index', type: :view) do
   include Pagy::Backend
 
   before(:each) do
+    allow(view).to receive(:params).and_return('status' => 'adopted')
     # @products = FactoryBot.create_list(:product, 2)
     @pagy, @products = pagy_array(FactoryBot.create_list(:product, 2), items: ENV['ITEMS_PER_PAGE'])
     @adopt_status = 'available'

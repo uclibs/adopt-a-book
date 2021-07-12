@@ -1,0 +1,41 @@
+<%= form_tag(status_products_path(:status => params['status']), :method => "get") do %>
+<div class="container">
+   <div class="row">
+      <div class="span" style="width: 300px;">
+         <br>
+         <h5><strong>Search by Category</strong></h5>
+         <%= select_tag(:category, options_for_select([["Preserve For The Future","Preserve For The Future"], ["Build The Collection","Build The Collection"]],params[:category]),class: "form-control-label form-control-sm",prompt: '--ALL--') %>
+      </div>
+      <div class="span" style="width: 300px;">
+         <br>
+         <h5><strong>Search by Library</strong></h5>
+         <%= select_tag(:library, options_for_select([["Archives and Rare Books Library","Archives and Rare Books Library"],
+            ["John Miller Burnam Classics Library","John Miller Burnam Classics Library"],
+            ["College of Engineering and Applied Science Library","College of Engineering and Applied Science Library"],
+            ["College of Education, Criminal Justice and Human Services Library","College of Education, Criminal Justice and Human Services Library"],
+            ["Robert A. Deshon and Karl J. Schlachter Library for Design, Architecture, Art, and Planning","Robert A. Deshon and Karl J. Schlachter Library for Design, Architecture, Art, and Planning"],
+            ["Geology-Mathematics-Physics Library","Geology-Mathematics-Physics Library"],
+            ["Albino Gorno Memorial Library ","Albino Gorno Memorial Library"],
+            ["Donald C. Harrison Health Sciences Library","Donald C. Harrison Health Sciences Library"],
+            ["Ralph E. Oe sper Chemistry-Biology Library","Ralph E. Oesper Chemistry-Biology Library"],
+            ["Henry R. Winkler Center for the History of the Health Professions","Henry R. Winkler Center for the History of the Health Professions"],
+            ["Elliston Poetry Room","Elliston Poetry Room"]],
+            params[:library]),class: "form-control-label form-control-sm",prompt: '--ALL--')%>
+      </div>
+      <div class="span" style="width: 300px;">
+         <br>
+         <h5><strong>Search by Title</strong></h5>
+         <%= search_field_tag(:title, params[:title], class: "form-control form-control-sm")%>
+      </div>
+      <div class="input-group-btn-1">
+         <%= button_tag "Search", :class => 'btn btn-outline-dark',:name => nil%>
+      </div>
+      <div class="input-group-btn-2">
+         <%= button_tag t('buttons.reset'), type: "submit", :class => 'btn btn-outline-dark', name: "reset", value: true %>
+      </div>
+      <% end %>
+   </div>
+</div>
+<br>
+<br>
+<br>
