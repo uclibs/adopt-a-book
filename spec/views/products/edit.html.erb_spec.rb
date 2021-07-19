@@ -15,17 +15,17 @@ RSpec.describe('products/edit', type: :view) do
 
       assert_select 'input[name=?]', 'product[pub_year]'
 
-      assert_select 'input[name=?]', 'product[category]'
+      assert_select 'select[name=?]', 'product[category]'
 
       assert_select 'input[name=?]', 'product[image]'
 
-      assert_select 'input[name=?]', 'product[library]'
+      assert_select 'select[name=?]', 'product[library]'
 
       assert_select 'input[name=?]', 'product[description]'
 
       assert_select 'input[name=?]', 'product[condition_treatment]'
 
-      assert_select 'input[name=?]', 'product[adopt_status]'
+      assert_select 'select[name=?]', 'product[adopt_status]'
 
       assert_select 'input[name=?]', 'product[adopt_amount]'
 
