@@ -47,7 +47,7 @@
    </div>
    <div class="field">
       <%= form.label :"adopt_status:" %>
-      <%= form.select(:adopt_status, options_for_select([["available","available"],["adopted", "adopted"]], params[:adopt_status]), {:class => 'form-control-label'})%>
+      <%= form.select(:adopt_status, ["available","adopted"], {}, {:class => 'form-control-label'}) %>
    </div>
    <div class="field">
       <%= form.label :"adopt_amount:" %>
