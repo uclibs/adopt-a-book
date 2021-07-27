@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   resources :pages, except: 'index'
   resources :contacts, only: %i[new create]
+  resources :adopters, only: %i[edit update]
   get '/contacts' => redirect('/contacts/new')
   get '/event' => redirect('/pages/2')
   get '/donors' => redirect('/pages/3')

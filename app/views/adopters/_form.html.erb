@@ -1,0 +1,47 @@
+<%= form_with(model: adopter, local: true) do |form| %>
+  <% if adopter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(adopter.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% adopter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-block">
+    <%= form.hidden_field :product_id, value: request.referrer.split(/products\//)[1] %>
+
+    <div class="field">
+    <%= form.label :"First Name:" %>
+    <%= form.text_field :fname, :class => 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :"Last Name:" %>
+    <%= form.text_field :lname, :class => 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :"Address:" %>
+    <%= form.text_field :address, :class => 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :"Phone:" %>
+    <%= form.text_field :phone, :class => 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :"Email:" %>
+    <%= form.text_field :email, :class => 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit:"Update Adopter", class: 'btn btn-dark' %>
+    <%= link_to 'Cancel', product_path(id: request.referrer.split(/products\//)[1]), class: 'btn btn-dark' %>
+  </div>
+</div>
+<% end %>
