@@ -2,7 +2,7 @@ require('rails_helper')
 RSpec.describe('adopters/edit', type: :view) do
   before(:each) do
     @adopter = FactoryBot.create(:adopter)
-    allow(view).to receive_message_chain(:request, :referrer).and_return('http://localhost:3000/product/1')
+    allow(view).to receive_message_chain(:request, :referrer).and_return('http://localhost:3000/products/1')
   end
 
   context 'when admin is logged in' do
