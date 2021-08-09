@@ -22,16 +22,20 @@
             ["Elliston Poetry Room","Elliston Poetry Room"]],
             params[:library]),class: "form-control-label form-control-sm",prompt: '--ALL--')%>
       </div>
-      <div class="span" style="width: 300px;">
+      <div class="span" style="width: 250px;">
          <br>
          <h5><strong>Search by Title</strong></h5>
          <%= search_field_tag(:title, params[:title], class: "form-control form-control-sm")%>
       </div>
-      <div class="input-group-btn-1">
-         <%= button_tag "Search", :class => 'btn btn-outline-dark',:name => nil%>
-      </div>
-      <div class="input-group-btn-2">
-         <%= button_tag t('buttons.reset'), type: "submit", :class => 'btn btn-outline-dark', name: "reset", value: true %>
+      <div class=""span3" style="width: 300px;">
+         <br>
+         <br>
+         <div class="pagination pagination-centered">
+            <ul>
+               <li> <%= button_tag "Search", :class => 'btn btn-outline-dark',:name => nil %> </li>
+               <li> <%= button_tag t('buttons.reset'), type: "submit", :class => 'btn btn-outline-dark', name: "reset", value: true %> </li>
+            </ul>
+         </div>
       </div>
       <% end %>
    </div>
