@@ -1,82 +1,73 @@
 <%= form_with(model: product, local: true) do |form| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
-      <ul>
+<% if product.errors.any? %>
+<div id="error_explanation">
+   <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+   <ul>
       <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pub_year %>
-    <%= form.text_field :pub_year %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :library %>
-    <%= form.text_field :library %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :condition_treatment %>
-    <%= form.text_field :condition_treatment %>
-  </div>
-
-  <div class="field">
-    <%= form.label :adopt_status %>
-    <%= form.text_field :adopt_status, :value => product.adopt_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :adopt_amount %>
-    <%= form.text_field :adopt_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :release_year %>
-    <%= form.number_field :release_year %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dedication %>
-    <%= form.text_field :dedication %>
-  </div>
-
-  <div class="field">
-    <%= form.label :recognition %>
-    <%= form.text_field :recognition %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+   </ul>
+</div>
+<% end %>
+<div class="form-block">
+   <div class="field">
+      <%= form.label :"title:" %>
+      <%= form.text_field :title, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"author:" %>
+      <%= form.text_field :author, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"pub_year:" %>
+      <%= form.text_field :pub_year, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"category:" %>
+      <%= form.select(:category, ['Build the Collection', 'Preserve for the Future'], {}, { :class => 'form-control-label' }) %>
+   </div>
+   <div class="field">
+      <%= form.label :"library:" %>
+      <%= form.select(:library, ['Archives and Rare Books Library', 'John Miller Burnam Classics Library', 'College of Engineering and Applied Science Library',
+         'College of Education', 'Criminal Justice and Human Services Library', 'Robert A. Deshon and Karl J. Schlachter Library for Design, Architecture, Art, and Planning',
+         'Geology-Mathematics-Physics Library', 'Albino Gorno Memorial Library', 'Donald C. Harrison Health Sciences Library', 'Ralph E. Oe sper Chemistry-Biology Library',
+         'Henry R. Winkler Center for the History of the Health Professions', 'Elliston Poetry Room'], {}, { :class => 'form-control-label' }) %>
+   </div>
+   <div class="field">
+      <%= form.label :"image:" %>
+      <%= form.text_field :image, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"description:"%>
+      <%= form.text_field :description, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"condition_treatment:" %>
+      <%= form.text_field :condition_treatment, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"adopt_status:" %>
+      <%= form.select(:adopt_status, ["available","adopted"], {}, {:class => 'form-control-label'}) %>
+   </div>
+   <div class="field">
+      <%= form.label :"adopt_amount:" %>
+      <%= form.text_field :adopt_amount, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"release_year:" %>
+      <%= form.number_field :release_year, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"dedication:" %>
+      <%= form.text_field :dedication, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"recognition:" %>
+      <%= form.text_field :recognition, :class => 'form-control' %>
+   </div>
+   <br>
+   <div class="actions">
+      <%= form.submit :"Update Product", class: 'btn btn-dark' %>
+   </div>
+</div>
 <% end %>
