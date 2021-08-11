@@ -26,7 +26,7 @@ RSpec.describe AdoptionMailer, type: :mailer do
     expect(mail.body.encoded).to match('["Title","Title"]')
     expect(mail.body.encoded).to match('Name: First Name Last Name')
     expect(mail.body.encoded).to match('Address: Address')
-    expect(mail.body.encoded).to match('Phone: 1234567890')
+    expect(mail.body.encoded).to match('Phone: 123-456-7890')
     expect(mail.body.encoded).to match('Email: adopter@example.com')
     expect(mail.body.encoded).to match('Please track the adoption process and change the adopt_status to \'1\' once the payment is done.')
   end

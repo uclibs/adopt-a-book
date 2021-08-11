@@ -48,7 +48,7 @@ RSpec.describe CartController, type: :controller do
 
   describe 'POST #payment' do
     it 'product and adopter details are saved in DB' do
-      post :payment, params: { 'fname' => 'First Name', 'lname' => 'Last Name', 'address' => 'Address', 'email' => 'adopter@exapmple.com', 'phone' => '1234567890' }
+      post :payment, params: { 'fname' => 'First Name', 'lname' => 'Last Name', 'address' => 'Address', 'email' => 'adopter@exapmple.com', 'phone' => '123-456-7890' }
       expect(Product.find(1).adopt_status).to eq 'pending'
       expect(Product.find(1).adopter_id).to eq 1
       expect(Product.find(1).dedication).to be_nil
@@ -56,7 +56,7 @@ RSpec.describe CartController, type: :controller do
       expect(Adopter.find(1).fname).to eq 'First Name'
       expect(Adopter.find(1).lname).to eq 'Last Name'
       expect(Adopter.find(1).address).to eq 'Address'
-      expect(Adopter.find(1).phone).to eq 1_234_567_890
+      expect(Adopter.find(1).phone).to eq '123-456-7890'
       expect(Adopter.find(1).email).to eq 'adopter@exapmple.com'
       expect(ActionMailer::Base.deliveries.count).to eq 2
     end

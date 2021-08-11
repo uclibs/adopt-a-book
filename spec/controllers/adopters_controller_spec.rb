@@ -17,7 +17,7 @@ RSpec.describe AdoptersController, type: :controller do
       fname: 'First Name',
       lname: 'Last Name',
       address: 'Address',
-      phone: '1234567890',
+      phone: '123-456-7890',
       email: 'adopter@example.com',
       product_id: '1'
     }
@@ -43,7 +43,7 @@ RSpec.describe AdoptersController, type: :controller do
           fname: 'First Name',
           lname: 'Last Name',
           address: 'Address',
-          phone: '1234567890',
+          phone: '123-456-7890',
           email: 'adopter@example.com'
         }
       end
@@ -53,7 +53,7 @@ RSpec.describe AdoptersController, type: :controller do
         expect(@adopter.fname).to(eq('First Name'))
         expect(@adopter.lname).to(eq('Last Name'))
         expect(@adopter.address).to(eq('Address'))
-        expect(@adopter.phone).to(have_content('1234567890'))
+        expect(@adopter.phone).to(have_content('123-456-7890'))
         expect(@adopter.email).to(have_content('adopter@example.com'))
       end
     end

@@ -16,27 +16,27 @@
 
     <div class="field">
     <%= form.label :"First Name:" %>
-    <%= form.text_field :fname, :class => 'form-control' %>
+    <%= form.text_field :fname, required: true, :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :"Last Name:" %>
-    <%= form.text_field :lname, :class => 'form-control' %>
+    <%= form.text_field :lname, required: true, :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :"Address:" %>
-    <%= form.text_field :address, :class => 'form-control' %>
+    <%= form.text_field :address, required: true, :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :"Phone:" %>
-    <%= form.text_field :phone, :class => 'form-control' %>
+    <%= form.text_field :phone, required: true, :class => 'form-control', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' %> Format: 123-456-7890
   </div>
 
   <div class="field">
     <%= form.label :"Email:" %>
-    <%= form.text_field :email, :class => 'form-control' %>
+    <%= form.text_field :email, required: true, :class => 'form-control', pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' %> Format: abc@def.xyz
   </div>
 
   <div class="actions">
