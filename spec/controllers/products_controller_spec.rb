@@ -24,6 +24,7 @@ require('rails_helper')
 # `rails-controller-testing` gem.
 
 RSpec.describe(ProductsController, type: :controller) do
+  render_views
   before do
     admin = FactoryBot.create(:admin)
     @product = FactoryBot.create(:product)
@@ -84,6 +85,42 @@ RSpec.describe(ProductsController, type: :controller) do
         expect(@product.adopt_status).to(eq('adopted'))
         expect(response).to(be_successful)
       end
+    end
+  end
+
+  context 'when searching by category' do
+    before do
+      FactoryBot.create(:adopted_product, title: 'Test Title One', category: 'Build The Collection')
+      FactoryBot.create(:adopted_product, title: 'Test Title Two', category: 'Preserve For The Future')
+    end
+    it 'returns a success response when searching by category' do
+      get :index, params: { status: 'adopted', category: 'Build The Collection' }, session: valid_session
+      expect(response.body).to have_text('Test Title One')
+      expect(response.body).to have_no_text('Test Title Two')
+    end
+  end
+
+  context 'when searching by library' do
+    before do
+      FactoryBot.create(:adopted_product, title: 'Test Title Three', library: 'Archives and Rare Books Library')
+      FactoryBot.create(:adopted_product, title: 'Test title Four', library: 'John Miller Burnam Classics Library')
+    end
+    it 'returns a success response when searching by library' do
+      get :index, params: { status: 'adopted', library: 'Archives and Rare Books Library' }, session: valid_session
+      expect(response.body).to have_text('Test Title Three')
+      expect(response.body).to have_no_text('Test Title Four')
+    end
+  end
+
+  context 'when searching by title' do
+    before do
+      FactoryBot.create(:adopted_product, title: 'Chinese Central Asia: A Ride to Little Tibet')
+      FactoryBot.create(:adopted_product, title: 'The First Book of Architecture')
+    end
+    it 'returns a success response when searching by title' do
+      get :index, params: { status: 'adopted', title: 'The First Book of Architecture' }, session: valid_session
+      expect(response.body).to have_text('The First Book of Architecture')
+      expect(response.body).to have_no_text('Chinese Central Asia: A Ride to Little Tibet')
     end
   end
 

@@ -2,37 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-label {
-     display: inline-block;
-     width: 140px;
-     text-align: left;
-     margin-left: 2px;
+.span3 {
+
+  ul{
+  list-style-type: none;
+  padding: 5px;
+  margin: 0;
+  margin-right: 70px;
 }
- select {
-     width: 440px;
-     padding: 9px;
-     border-radius: 10px;
+li{
+
+  display: inline;
+  margin-right: 10px;
+  float: left;
+ }
 }
- h2{
-     margin-left: 2px;
-}
- .form-block .select-form{
-     width:37.5%;
-     padding: 9px;
-     border-radius: 10px;
-     text-align: left;
-}
- .form-block .form-control {
-     display: inline-block;
-     width: 440px;
-     text-align: left;
-     border-radius: 10px;
-}
- .form-block .form-control-label{
-     width:34%;
-     padding: 9px;
-     border-radius: 10px;
-}
- .form-block .actions{
-     margin-left: 2px;
+
+.span .form-control-label {
+  width:75%;
 }
