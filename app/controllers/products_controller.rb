@@ -89,9 +89,9 @@ class ProductsController < ApplicationController
 
   def search_products
     if params[:title].nil? && params[:category].nil? && params[:library].nil?
-      @pagy, @products = pagy(Product.all, items: 8)
+      @pagy, @products = pagy(Product.send(params['status']), items: ENV['ITEMS_PER_PAGE'])
     else
-      @pagy, @products = pagy(Product.where(['title LIKE ? AND category LIKE? AND library LIKE?', "%#{params[:title]}%", "%#{params[:category]}%", "%#{params[:library]}%"]), items: 8)
+      @pagy, @products = pagy(Product.where(['title LIKE ? AND category LIKE ? AND library LIKE ?', "%#{params[:title]}%", "%#{params[:category]}%", "%#{params[:library]}%"]).where(adopt_status: params['status']), items: ENV['ITEMS_PER_PAGE'])
     end
   end
 
