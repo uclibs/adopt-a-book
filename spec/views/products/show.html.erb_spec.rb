@@ -105,7 +105,7 @@ RSpec.describe('products/show', type: :view) do
       expect(rendered).to(match(/First Name/))
       expect(rendered).to(match(/Last Name/))
       expect(rendered).to(match(/Address/))
-      expect(rendered).to(match(/1234567890/))
+      expect(rendered).to(match(/123-456-7890/))
       expect(rendered).to(match(/adopter@example.com/))
       expect(rendered).to(match(/2020-10-27 19:30:54/))
     end

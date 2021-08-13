@@ -3,7 +3,7 @@ FactoryBot.define do
     fname { 'First Name' }
     lname { 'Last Name' }
     address { 'Address' }
-    phone { 1_234_567_890 }
+    phone { '123-456-7890' }
     email { 'adopter@example.com' }
   end
 end
