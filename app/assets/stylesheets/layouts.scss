@@ -49,12 +49,15 @@ footer {
 #header-bottom {
   background-color: #000;
   .btn.btn-circle {
+    font-size:12px;
     background-color: white;
-    color: black;
-    padding: 0px 6px 0px 6px;
-    border-radius: 16px;
-    margin-top: -55px;
-    margin-left: 30px;
+        color: black;
+        padding: 3px 6px 0px 6px;
+        border-radius: 16px;
+        position: absolute;
+        margin-left: 30px;
+        margin-top: -32px;
+
   }
   a {
     color: #fff;
