@@ -14,6 +14,8 @@
  *= require_self
  */
  @import "bootstrap";
-.main-content {
-  min-height: 62vh;
+ .main-content {
+     min-height: 62vh;
+     max-width: 1200px;
+     margin: auto;
 }

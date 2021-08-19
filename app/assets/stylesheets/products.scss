@@ -3,21 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .span3 {
-
-  ul{
-  list-style-type: none;
-  padding: 5px;
-  margin: 0;
-  margin-right: 70px;
+     ul{
+         list-style-type: none;
+         padding: 5px;
+         margin: 0;
+         margin-right: 70px;
+    }
+     li{
+         display: inline;
+         margin-right: 10px;
+         float: left;
+    }
 }
-li{
-
-  display: inline;
-  margin-right: 10px;
-  float: left;
- }
-}
-
-.span .form-control-label {
-  width:75%;
+ .span .form-control-label {
+     width:75%;
 }

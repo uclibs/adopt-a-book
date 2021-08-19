@@ -12,7 +12,7 @@
 </p>
 <br>
 <div class="row">
-   <% if @product.available? || @product.pending? %>
+   <% if @product.available? || (@product.pending? && !admin_signed_in?) %>
    <div id="book-details" class="col-8">
       <p>
          <strong>Adopt amount:</strong>
@@ -35,12 +35,17 @@
          <%= @product.condition_treatment %>
       </p>
       <% end %>
+
+   <% if admin_signed_in? %>
+      <%= link_to 'Edit Product', edit_product_path(@product), class: 'btn btn-default' %>
+      <% end %>
+
    </div>
    <div class="col-4">
       <%# Replace with @product.title in place of sample_image.jpg when all images are available %>
       <%= image_tag 'sample_image.jpg', width: '300', height: '380', class: 'book-image' %>
    </div>
-   <% elsif  @product.adopted? %>
+   <% else %>
    <div id="book-details"  class="col-7">
       <p>
          <%# Replace with @product.title in place of sample_image.jpg when all images are available %>
@@ -61,71 +66,26 @@
          <strong>Library:</strong>
          <%= @product.library %>
       </p>
+   <% end %>
 
-      <strong> <h6 id=heading> Adopter Details: </h6> </strong>
+  <% unless @adopter.nil? %>
+    <%  if @product.adopted? || (admin_signed_in?) %>
+     <%= render 'adopter'%>
+  <% end %>
+ </div>
 
-      <% unless @product.recognition.blank? %>
-      <p>
-         <strong>Adopted by:</strong>
-         <%= @product.recognition %>
-      </p>
-      <% else %>
-      <p>
-         <strong>Adopted by:</strong>
-         <%= @adopter.fname + " " + @adopter.lname %>
-      </p>
-      <% end %>
-      <% unless @product.dedication.blank? %>
-      <p>
-         <i><%= @product.dedication %></i>
-         </p
-         <% end %>
-         <% if !@adopter.blank? && admin_signed_in? %>
-      <p>
-         <strong> First Name:</strong>
-         <%= @adopter.fname %>
-      </p>
-      <p>
-         <strong>Last Name::</strong>
-         <%= @adopter.lname %>
-      </p>
-      <p>
-         <strong>Address:</strong>
-         <%= @adopter.address %>
-      </p>
-      <p>
-         <strong>Phone:</strong>
-         <%= @adopter.phone %>
-      </p>
-      <p>
-         <strong>Email:</strong>
-         <%= @adopter.email %>
-      </p>
-      <p>
-         <strong>Adopt Time:</strong>
-         <%= @product.adopt_time %>
-      </p>
-      <% end %>
-
-      <% if admin_signed_in? %>
-      <%= link_to 'Edit Adopter', edit_adopter_path(@adopter), class: 'btn btn-default' %>
-      <% end %>
-
-      <% if admin_signed_in? %>
-      <%= link_to 'Edit Product', edit_product_path(@product), class: 'btn btn-default' %>
-      <% end %>
-
-   </div>
    <div class="col-5">
       <%= image_tag 'bookplate.png', width: '410', height: '570' %>
    </div>
-   <% end %>
+  <% end %>
+
    <% if session[:cart] && session[:cart].include?(@product.id.to_s) %>
    <p>
       <%= link_to 'Added to cart', cart_path, class: 'btn btn-default disabled'%>
       <%= link_to 'View cart', cart_path, class: 'btn btn-default'%>
       <%= link_to 'Adopt more books', status_products_path(:status => "available"), class: 'btn btn-default' %>
    </p>
+
    <% elsif @product.available? && !admin_signed_in? %>
    <%= link_to 'Add to cart', @product, remote: true, method: :post, class: "btn btn-default" %>
    <% end %>

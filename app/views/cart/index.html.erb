@@ -1,52 +1,49 @@
 <%= form_with url: checkout_path, local: true, method: :post do %>
-  <h3 id="heading">Adoption cart</h3>
-  <% if @cart.empty? %>
-    <div class="empty-cart text-center">
+<h3 id="heading">Adoption cart</h3>
+<% if @cart.empty? %>
+<div class="empty-cart text-center">
+   <br>
+   <p>The cart is empty.</p>
+   <p><%= image_tag 'empty_cart.png', height: '180' %></p>
+   <p><%= link_to 'Adopt books', status_products_path(:status => "available"), class: 'btn btn-default' %></p>
+</div>
+<% else %>
+<br>
+<% @cart.each do |product| %>
+<div class="row">
+   <div class="col-2">
+      <%# Replace with @product.title in place of sample_image.jpg when all images are available %>
+      <%= link_to (image_tag 'sample_image.jpg', width: '110', height: '150', class: 'book-image'), product %>
+   </div>
+   <div id="cart-details" class="col-10">
+      <%= link_to product.title, product, class: 'product-title' %>
+      <div style="float:right"><%= number_to_currency(product.adopt_amount) %></div>
+      <div id="cart-form-field">
+         <%= label_tag 'Recognition: ' %>
+         <%= text_field_tag product.id.to_s + '_recognition', session[:cart][product.id.to_s]['recognition'], maxlength: 75, placeholder: 'Please indicate your preferred name for the personalized bookplate. (optional)' %>
+      </div>
+      <div id="cart-form-field">
+         <%= label_tag 'Dedication: ' %>
+         <%= text_field_tag product.id.to_s + '_dedication', session[:cart][product.id.to_s]['dedication'], maxlength: 75, placeholder: 'You may add a dedication message for this book. (optional) Max: 75 characters' %>
+      </div>
       <br>
-      <p>The cart is empty.</p>
-      <p><%= image_tag 'empty_cart.png', height: '180' %></p>
-      <p><%= link_to 'Adopt books', status_products_path(:status => "available"), class: 'btn btn-default' %></p>
-    </div>
-
-  <% else %>
-    <br>
-    <% @cart.each do |product| %>
-      <div class="row">
-        <div class="col-2">
-          <%# Replace with @product.title in place of sample_image.jpg when all images are available %>
-          <%= link_to (image_tag 'sample_image.jpg', width: '150', height: '100', class: 'book-image'), product %>
-        </div>
-        <div id="cart-details" class="col-10">
-          <%= link_to product.title, product, class: 'product-title' %>
-          <div style="float:right"><%= number_to_currency(product.adopt_amount) %></div>
-          <div id="cart-form-field">
-            <%= label_tag 'Recognition: ' %>
-            <%= text_field_tag product.id.to_s + '_recognition', session[:cart][product.id.to_s]['recognition'], maxlength: 75, placeholder: 'Please indicate your preferred name for the personalized bookplate. (optional)' %>
-          </div>
-          <div id="cart-form-field">
-            <%= label_tag 'Dedication: ' %>
-            <%= text_field_tag product.id.to_s + '_dedication', session[:cart][product.id.to_s]['dedication'], maxlength: 75, placeholder: 'You may add a dedication message for this book. (optional) Max: 75 characters' %>
-          </div>
-          <br>
-          <%= link_to (image_tag 'trash.png', width: '18', height: '18'), remove_path(product), remote: true, method: :delete, class: 'remove-link' %>
-          <%= link_to 'Remove', remove_path(product), remote: true, method: :delete, class: 'remove-link' %>
-        </div>
-      </div>
-      <br><hr>
-    <% end %>
-
-    <strong>
-      <div style="float:right">
-        Total price: <%= number_to_currency(@cart.map(&:adopt_amount).sum) %>
-      </div>
-    </strong>
-
-    <br><br>
-
-    <div class="text-center">
-      <%= link_to 'Clear cart', cart_path, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %>
-      <%= link_to 'Adopt more books', status_products_path(:status => "available"), class: 'btn btn-default' %>
-      <%= submit_tag "Checkout", class: 'btn btn-default' %>
-    </div>
-  <% end %>
+      <%= link_to (image_tag 'trash.png', width: '18', height: '18'), remove_path(product), remote: true, method: :delete, class: 'remove-link' %>
+      <%= link_to 'Remove', remove_path(product), remote: true, method: :delete, class: 'remove-link' %>
+   </div>
+</div>
+<br>
+<hr>
+<% end %>
+<strong>
+   <div style="float:right">
+      Total price: <%= number_to_currency(@cart.map(&:adopt_amount).sum) %>
+   </div>
+</strong>
+<br><br>
+<div class="text-center">
+   <%= link_to 'Clear cart', cart_path, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %>
+   <%= link_to 'Adopt more books', status_products_path(:status => "available"), class: 'btn btn-default' %>
+   <%= submit_tag "Checkout", class: 'btn btn-default' %>
+</div>
+<% end %>
 <% end %>
