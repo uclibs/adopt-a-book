@@ -61,9 +61,9 @@
          <strong>Library:</strong>
          <%= @product.library %>
       </p>
-
-      <strong> <h6 id=heading> Adopter Details: </h6> </strong>
-
+      <strong>
+         <h6 id=heading> Adopter Details: </h6>
+      </strong>
       <% unless @product.recognition.blank? %>
       <p>
          <strong>Adopted by:</strong>
@@ -106,15 +106,12 @@
          <%= @product.adopt_time %>
       </p>
       <% end %>
-
       <% if admin_signed_in? %>
       <%= link_to 'Edit Adopter', edit_adopter_path(@adopter), class: 'btn btn-default' %>
       <% end %>
-
       <% if admin_signed_in? %>
       <%= link_to 'Edit Product', edit_product_path(@product), class: 'btn btn-default' %>
       <% end %>
-
    </div>
    <div class="col-5">
       <%= image_tag 'bookplate.png', width: '410', height: '570' %>

@@ -1,88 +1,83 @@
-
 footer {
-  background-color: #000;
-  color: #fff;
-  padding: 32px;
-  text-align: center;
-  a {
+    background-color: #000;
     color: #fff;
-    text-decoration: underline;
-    &:visited {
-      color: #fff;
-    }
-    &:hover {
-      color: #fff;
-      text-decoration: none;
-    }
-  }
+    padding: 32px;
+    text-align: center;
+    a {
+        color: #fff;
+        text-decoration: underline;
+        &:visited {
+            color: #fff;
+       }
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+       }
+   }
 }
 .hidden {
-  display:none;
+    display:none;
 }
-
 .container h1 {
-  text-align: center;
+    text-align: center;
 }
-
 .card{
     border-radius: 4px;
     background: #fff;
     box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
-      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
-  padding: 14px 80px 18px 36px;
-  cursor: pointer;
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    padding: 14px 80px 18px 36px;
+    cursor: pointer;
 }
-
 .card:hover{
-     transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
-
 #header-top {
-  background-color: #e00122;
-  .text {
-    font-size: 25px;
-    color: #fff;
-    padding-top: 10px;
-  }
+    background-color: #e00122;
+    .text {
+        font-size: 25px;
+        color: #fff;
+        padding-top: 10px;
+   }
 }
 #header-bottom {
-  background-color: #000;
-  .btn.btn-circle {
-    font-size:12px;
-    background-color: white;
-    color: black;
-    padding: 3px 6px 0px 6px;
-    border-radius: 16px;
-    position: absolute;
-    margin-left: 30px;
-    margin-top: -32px;
-}
-  a {
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 15px;
-    &:visited {
-      color: #fff;
-    }
-    &:hover {
-      text-decoration: none;
-    }
-  }
-  #logo {
-    img {
-      position: absolute;
-    }
-  }
-  #links {
-    font-weight: 600;
-  }
-  #login {
-    float: right;
-    padding-top: 10px;
-    p {
-      margin: 10px;
-      font-size: 16px;
-    }
-  }
+    background-color: #000;
+    .btn.btn-circle {
+        font-size:12px;
+        background-color: white;
+        color: black;
+        padding: 3px 6px 0px 6px;
+        border-radius: 16px;
+        position: absolute;
+        margin-left: 30px;
+        margin-top: -32px;
+   }
+    a {
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 15px;
+        &:visited {
+            color: #fff;
+       }
+        &:hover {
+            text-decoration: none;
+       }
+   }
+    #logo {
+        img {
+            position: absolute;
+       }
+   }
+    #links {
+        font-weight: 600;
+   }
+    #login {
+        float: right;
+        padding-top: 10px;
+        p {
+            margin: 10px;
+            font-size: 16px;
+       }
+   }
 }

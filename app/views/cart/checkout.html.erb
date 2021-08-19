@@ -1,70 +1,69 @@
 <%= form_with url: payment_path, local: true, method: :post do %>
-  <h3 id=heading>Adopter information form</h3>
-  <p>Please review the information below. If any changes are needed, click on cart icon in the header to make corrections and checkout again.</p>
-
-  <div>
-    <strong>Adopted books:</strong>
-  </div>
-  <br>
-
-  <% @cart.each_with_index do |product, index| %>
-    <div class="row">
-      <div class="col-1">
-        <%= index + 1 %>
+<h3 id=heading>Adopter information form</h3>
+<p>Please review the information below. If any changes are needed, click on cart icon in the header to make corrections and checkout again.</p>
+<div>
+   <strong>Adopted books:</strong>
+</div>
+<br>
+<% @cart.each_with_index do |product, index| %>
+<div class="row">
+   <div class="col-1">
+      <%= index + 1 %>
+   </div>
+   <div class="col-2">
+      <%= image_tag 'sample_image.jpg', width: '60', height: '70' %>
+   </div>
+   <div class="col-9">
+      <strong>
+      <%= product.title %>
+      </strong>
+      <% unless session[:cart][product.id.to_s]['recognition'].blank? %>
+      <div class="mt-2">
+         <strong><%= label_tag 'Recognition:' %></strong>
+         <%= session[:cart][product.id.to_s]['recognition'] %>
       </div>
-      <div class="col-2">
-        <%= image_tag 'sample_image.jpg', width: '60', height: '70' %>
+      <% end %>
+      <% unless session[:cart][product.id.to_s]['dedication'].blank? %>
+      <div>
+         <strong><%= label_tag 'Dedication:' %></strong>
+         <%= session[:cart][product.id.to_s]['dedication'] %>
       </div>
-      <div class="col-9">
-        <strong>
-          <%= product.title %>
-        </strong>
-        <% unless session[:cart][product.id.to_s]['recognition'].blank? %>
-          <div class="mt-2">
-            <strong><%= label_tag 'Recognition:' %></strong>
-            <%= session[:cart][product.id.to_s]['recognition'] %>
-          </div>
-        <% end %>
-        <% unless session[:cart][product.id.to_s]['dedication'].blank? %>
-          <div>
-            <strong><%= label_tag 'Dedication:' %></strong>
-            <%= session[:cart][product.id.to_s]['dedication'] %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <hr>
-  <% end %>
-  <strong>
-    Total amount to be paid: <%= number_to_currency(@cart.map(&:adopt_amount).sum) %>
-  </strong>
-  <div id="adopter-form">
-    <br>
-    <p class="form-message">Please fill out all information</p>
-    <div>
+      <% end %>
+   </div>
+</div>
+<hr>
+<% end %>
+<strong>
+Total amount to be paid: <%= number_to_currency(@cart.map(&:adopt_amount).sum) %>
+</strong>
+<div id="adopter-form">
+   <br>
+   <p class="form-message">Please fill out all information</p>
+   <div>
       <%= label_tag 'First Name*' %>
       <%= text_field_tag 'fname', nil, required: true, class: 'form-input' %>
-    </div>
-    <div class="mt-2">
+   </div>
+   <div class="mt-2">
       <%= label_tag 'Last Name*' %>
       <%= text_field_tag 'lname', nil, required: true, class: 'form-input' %>
-    </div>
-    <div class="mt-2">
+   </div>
+   <div class="mt-2">
       <%= label_tag 'Address*' %>
       <%= text_field_tag 'address', nil, required: true, class: 'form-input' %>
-    </div>
-    <div class="mt-2">
+   </div>
+   <div class="mt-2">
       <%= label_tag 'Email*' %>
       <%= email_field_tag 'email', nil, required: true, class: 'form-input', pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' %>
       Format: abc@def.xyz
-    </div>
-    <div class="mt-2">
+   </div>
+   <div class="mt-2">
       <%= label_tag 'Phone*' %>
       <%= phone_field_tag 'phone', nil, required: true, class: 'form-input', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' %>
       Format: 123-456-7890
-    </div><br />
-    <div>
+   </div>
+   <br />
+   <div>
       <%= submit_tag "Make Payment", class: 'btn btn-default' %>
-    </div>
-  </div>
+   </div>
+</div>
 <% end %>
