@@ -1,47 +1,39 @@
 <%= form_with(model: adopter, local: true) do |form| %>
-  <% if adopter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(adopter.errors.count, "error") %> prohibited this product from being saved:</h2>
-
-      <ul>
+<% if adopter.errors.any? %>
+<div id="error_explanation">
+   <h2><%= pluralize(adopter.errors.count, "error") %> prohibited this product from being saved:</h2>
+   <ul>
       <% adopter.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-block">
-    <%= form.hidden_field :product_id, value: request.referrer.split(/products\//)[1] %>
-
-    <div class="field">
-    <%= form.label :"First Name:" %>
-    <%= form.text_field :fname, required: true, :class => 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :"Last Name:" %>
-    <%= form.text_field :lname, required: true, :class => 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :"Address:" %>
-    <%= form.text_field :address, required: true, :class => 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :"Phone:" %>
-    <%= form.text_field :phone, required: true, :class => 'form-control', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' %> Format: 123-456-7890
-  </div>
-
-  <div class="field">
-    <%= form.label :"Email:" %>
-    <%= form.text_field :email, required: true, :class => 'form-control', pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' %> Format: abc@def.xyz
-  </div>
-
-  <div class="actions">
-    <%= form.submit:"Update Adopter", class: 'btn btn-dark' %>
-    <%= link_to 'Cancel', product_path(id: request.referrer.split(/products\//)[1]), class: 'btn btn-dark' %>
-  </div>
+   </ul>
+</div>
+<% end %>
+<div class="form-block">
+   <%= form.hidden_field :product_id, value: request.referrer.split(/products\//)[1] %>
+   <div class="field">
+      <%= form.label :"First Name:" %>
+      <%= form.text_field :fname, required: true, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"Last Name:" %>
+      <%= form.text_field :lname, required: true, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"Address:" %>
+      <%= form.text_field :address, required: true, :class => 'form-control' %>
+   </div>
+   <div class="field">
+      <%= form.label :"Phone:" %>
+      <%= form.text_field :phone, required: true, :class => 'form-control', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' %> Format: 123-456-7890
+   </div>
+   <div class="field">
+      <%= form.label :"Email:" %>
+      <%= form.text_field :email, required: true, :class => 'form-control', pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$' %> Format: abc@def.xyz
+   </div>
+   <div class="actions">
+      <%= form.submit:"Update Adopter", class: 'btn btn-dark' %>
+      <%= link_to 'Cancel', product_path(id: request.referrer.split(/products\//)[1]), class: 'btn btn-dark' %>
+   </div>
 </div>
 <% end %>
