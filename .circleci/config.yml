@@ -165,11 +165,11 @@ workflows:
   ci:
       jobs:
           - build:
-              name: ruby2-6-6
+              name: ruby2-7-0
 
           - build-image:
               requires:
-                - ruby2-6-6
+                - ruby2-7-0
 
           - publish-image:
               requires:
