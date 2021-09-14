@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3>Adopt-a-book program by University of Cincinnati Libraries</h3>
-    <p> We received an order through 'Adopt-a-book' program. </p>
-    <p>
-      Number of books: <%= @product_count %><br>
-      Book <%= 'ID'.pluralize(@product_count)%>: <%= @product_ids.map(&:to_i) %><br>
-      Book <%= 'title'.pluralize(@product_count)%>: <%= @product_titles %><br>
-      Name: <%= @adopter.fname + ' ' + @adopter.lname %><br>
-      Address: <%= @adopter.address %><br>
-      Phone: <%= @adopter.phone %><br>
-      Email: <%= @adopter.email %>
-    </p>
-    <p>Please track the adoption process and change the adopt_status to '1' once the payment is done.</p>
-    <p> Thank you. </p>
-  </body>
+   <head>
+      <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+   </head>
+   <body>
+      <h3>Adopt-a-book program by University of Cincinnati Libraries</h3>
+      <p> We received an order through 'Adopt-a-book' program. </p>
+      <p>
+         Number of books: <%= @product_count %><br>
+         Book <%= 'ID'.pluralize(@product_count)%>: <%= @product_ids.map(&:to_i) %><br>
+         Book <%= 'title'.pluralize(@product_count)%>: <%= @product_titles %><br>
+         Name: <%= @adopter.fname + ' ' + @adopter.lname %><br>
+         Address: <%= @adopter.address %><br>
+         Phone: <%= @adopter.phone %><br>
+         Email: <%= @adopter.email %>
+      </p>
+      <p>Please track the adoption process and change the adopt_status to '1' once the payment is done.</p>
+      <p> Thank you. </p>
+   </body>
 </html>

@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
-  <head>
-    <%= favicon_link_tag asset_path('favicon.ico') %>
-    <title>Adopt-A-Book | UC Libraries</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <% unless admin_signed_in? %>
-      <%= javascript_include_tag 'cart_expiry'%>
-    <% end %>
-  
-  </head>
-
-  <body>
-    <div class="wrapper">
-      <%= render "layouts/header.html.erb" %>
-      <br><br>
-      <div class="main-content container">
-        <% if alert %>
-          <p id="alert" style="color: red"><%= alert %></p>
-        <% elsif notice %>
-          <p id="notice"><%= notice %></p>
-        <% end %>
-        <%= yield %>
-      </div>
-      <br>
-      <%= render "layouts/cart_expiry_confirm.html.erb" %>
-      <%= render "layouts/footer.html.erb" %>
-    </div>
-  </body>
-</html>
+   <html>
+      <head>
+         <%= favicon_link_tag asset_path('favicon.ico') %>
+         <title>Adopt-A-Book | UC Libraries</title>
+         <%= csrf_meta_tags %>
+         <%= csp_meta_tag %>
+         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+         <% unless admin_signed_in? %>
+         <%= javascript_include_tag 'cart_expiry'%>
+         <% end %>
+      </head>
+      <body>
+         <div class="wrapper">
+            <%= render "layouts/header.html.erb" %>
+            <br><br>
+            <div class="main-content container">
+               <% if alert %>
+               <p id="alert" style="color: red"><%= alert %></p>
+               <% elsif notice %>
+               <p id="notice"><%= notice %></p>
+               <% end %>
+               <%= yield %>
+            </div>
+            <br>
+            <%= render "layouts/cart_expiry_confirm.html.erb" %>
+            <%= render "layouts/footer.html.erb" %>
+         </div>
+      </body>
+   </html>
