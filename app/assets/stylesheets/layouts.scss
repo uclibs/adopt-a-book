@@ -1,4 +1,6 @@
 footer {
+    width: 100%;
+    min-width: 80em;
     background-color: #000;
     color: #fff;
     padding: 32px;
@@ -34,6 +36,8 @@ footer {
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 #header-top {
+    width: 100%;
+    min-width: 80em;
     background-color: #e00122;
     .text {
         font-size: 25px;
@@ -42,6 +46,8 @@ footer {
    }
 }
 #header-bottom {
+    width: 100%;
+    min-width: 80em;
     background-color: #000;
     .btn.btn-circle {
         font-size:12px;
@@ -62,6 +68,10 @@ footer {
        }
         &:hover {
             text-decoration: none;
+            background: #e00122;
+            color: #FFF;
+            border-radius:90px;
+            text-shadow: 0 1px 0 rgba(0,0,0,.08);
        }
    }
     #logo {
