@@ -1,0 +1,46 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dangerous Send",
+      "warning_code": 23,
+      "fingerprint": "15b82c030f08fcfd3d23c4a93e125f326ac35ffa979f9769d3f10ae208f8f66e",
+      "check_name": "Send",
+      "message": "User controlled method execution",
+      "file": "app/controllers/products_controller.rb",
+      "line": 11,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
+      "code": "Product.send(params[\"status\"])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ProductsController",
+        "method": "index"
+      },
+      "user_input": "params[\"status\"]",
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Dangerous Send",
+      "warning_code": 23,
+      "fingerprint": "76b3d99dd719bf7e60f45c75c0f292aa61e62a9da63a62c02ffdec9b27dbc0d0",
+      "check_name": "Send",
+      "message": "User controlled method execution",
+      "file": "app/controllers/products_controller.rb",
+      "line": 92,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
+      "code": "Product.send(params[\"status\"])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ProductsController",
+        "method": "search_products"
+      },
+      "user_input": "params[\"status\"]",
+      "confidence": "High",
+      "note": ""
+    }
+  ],
+  "updated": "2021-11-15 17:31:47 -0500",
+  "brakeman_version": "5.1.2"
+}
