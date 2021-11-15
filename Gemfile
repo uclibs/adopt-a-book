@@ -31,6 +31,8 @@ gem 'font-awesome-sass', '~> 4.7.0'
 
 gem 'bootstrap-icons', '~> 1.0', '>= 1.0.8'
 
+gem 'brakeman', '~> 5.1', '>= 5.1.1'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -52,6 +54,7 @@ gem 'jquery-ui-rails'
 gem 'pagy'
 
 group :development, :test do
+  gem 'bundler-audit'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
