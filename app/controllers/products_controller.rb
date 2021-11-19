@@ -7,8 +7,8 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @pagy, @products = if Product.adopt_statuses.key? params['status'] # security check that it's a valid param
-                         @adopt_status = params['status']
-                         pagy(Product.send(params['status']), items: ENV['ITEMS_PER_PAGE'])
+                         @adopt_status = params['status'] if params['status'] == 'available' || params['status'] == 'adopted' || params['status'] == 'pending'
+                         pagy(Product.send(@adopt_status), items: ENV['ITEMS_PER_PAGE'])
                        else
                          @adopt_status = 'available'
                          pagy(Product.available, items: ENV['ITEMS_PER_PAGE']) # if not a valid status param, just return available products
@@ -89,7 +89,7 @@ class ProductsController < ApplicationController
 
   def search_products
     if params[:title].nil? && params[:category].nil? && params[:library].nil?
-      @pagy, @products = pagy(Product.send(params['status']), items: ENV['ITEMS_PER_PAGE'])
+      @pagy, @products = pagy(Product.send(@adopt_status), items: ENV['ITEMS_PER_PAGE'])
     else
       @pagy, @products = pagy(Product.where(['title LIKE ? AND category LIKE ? AND library LIKE ?', "%#{params[:title]}%", "%#{params[:category]}%", "%#{params[:library]}%"]).where(adopt_status: params['status']), items: ENV['ITEMS_PER_PAGE'])
     end
