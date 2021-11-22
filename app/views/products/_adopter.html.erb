@@ -1,0 +1,56 @@
+<strong> <h6 id=heading> Adopter Details: </h6> </strong>
+
+<% unless @product.recognition.blank? %>
+<p>
+   <strong>Adopted by:</strong>
+   <%= @product.recognition %>
+</p>
+<% else %>
+<p>
+   <strong>Adopted by:</strong>
+   <%= @adopter.fname + " " + @adopter.lname %>
+</p>
+<% end %>
+
+<% unless @product.dedication.blank? %>
+<p>
+<i><%= @product.dedication %></i>
+</p>
+<% end %>
+
+<% if !@adopter.blank? && admin_signed_in? %>
+<p>
+   <strong>First Name:</strong>
+   <%= @adopter.fname %>
+</p>
+<p>
+   <strong>Last Name:</strong>
+   <%= @adopter.lname %>
+</p>
+<p>
+   <strong>Address:</strong>
+   <%= @adopter.address %>
+</p>
+<p>
+   <strong>Phone:</strong>
+   <%= @adopter.phone %>
+</p>
+<p>
+   <strong>Email:</strong>
+   <%= @adopter.email %>
+</p>
+<p>
+   <strong>Adopt Time:</strong>
+   <%= @product.adopt_time %>
+</p>
+<% end %>
+
+<% if admin_signed_in? %>
+  <% unless @adopter.nil? %>
+    <%= link_to 'Edit Adopter', edit_adopter_path(@adopter), class: 'btn btn-default' %>
+  <% end %>
+<% end %>
+
+<% if admin_signed_in? %>
+<%= link_to 'Edit Product', edit_product_path(@product), class: 'btn btn-default' %>
+<% end %>
