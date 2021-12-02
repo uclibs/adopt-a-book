@@ -5,7 +5,7 @@ class CreateAdopters < ActiveRecord::Migration[5.2]
       t.string :fname
       t.string :lname
       t.string :address
-      t.integer :phone, limit: 10
+      t.integer :phone
       t.string :email
       t.timestamp :time
 
