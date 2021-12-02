@@ -17,6 +17,10 @@
 !/log/.keep
 !/tmp/.keep
 
+/tmp/puma/*
+!/tmp/puma/
+!/tmp/puma/.keep
+
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
