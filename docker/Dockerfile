@@ -25,7 +25,7 @@ COPY --chown=rails:rails Gemfile* ./
 RUN gem install bundler -v "$(cat Gemfile.lock | tail -1 | tr -d ' ')" && bundle install --no-cache --jobs 20 --retry 5
 
 COPY --chown=rails:rails . ./
-RUN mkdir -p $RAILS_ROOT/tmp/pids
+RUN mkdir -p $RAILS_ROOT/tmp/puma
 EXPOSE 3000
 
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
