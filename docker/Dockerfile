@@ -1,4 +1,4 @@
-FROM ruby:2.7.4-alpine3.13
+FROM ruby:2.7.5-alpine3.13
 RUN apk --update --no-cache add build-base ncurses xvfb xvfb-run nodejs yarn sqlite-dev tzdata libxslt-dev libxml2-dev
 RUN apk --update --no-cache add mariadb-dev
 
@@ -25,7 +25,7 @@ COPY --chown=rails:rails Gemfile* ./
 RUN gem install bundler -v "$(cat Gemfile.lock | tail -1 | tr -d ' ')" && bundle install --no-cache --jobs 20 --retry 5
 
 COPY --chown=rails:rails . ./
-RUN mkdir -p $RAILS_ROOT/tmp/pids
+RUN mkdir -p $RAILS_ROOT/tmp/puma
 EXPOSE 3000
 
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
